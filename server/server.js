@@ -3,6 +3,7 @@ const multer = require('multer');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const path = require('path');
+const fs = require('fs');
 const db = require('./db');
 
 const app = express();
@@ -10,9 +11,15 @@ const PORT = process.env.PORT || 4000;
 const JWT_SECRET = process.env.JWT_SECRET || 'ny_index_secret_2026';
 const APP_DIR = path.join(__dirname, '..'); // NY_INDEX_App 根目录
 
+// 数据/上传目录：默认 server/data 与 server/uploads（本地开发）；
+// 线上部署通过 DATA_DIR 指向持久盘（如 /app/data），图片与 store.json 都落在该盘内
+const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, 'data');
+const UPLOAD_DIR = path.join(DATA_DIR, 'uploads');
+if (!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+
 app.use(cors());
 app.use(express.json());
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(UPLOAD_DIR));
 // 同时托管前端（index.html / admin.html / css / js）
 app.use(express.static(APP_DIR));
 
@@ -20,7 +27,7 @@ db.ensureDefaultAdmin();
 
 /* ---------------- 上传配置 ---------------- */
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, path.join(__dirname, 'uploads')),
+  destination: (req, file, cb) => cb(null, UPLOAD_DIR),
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname) || '.jpg';
     cb(null, Date.now() + '_' + Math.random().toString(36).slice(2, 8) + ext);

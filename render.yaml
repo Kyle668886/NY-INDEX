@@ -1,18 +1,32 @@
-# Render 部署蓝图（免费额度可用）
-# 在 Render 控制台 New → Blueprint → 连接本仓库即可。
+# Render 部署蓝图
+# 在 Render 控制台 New → Blueprint → 连接本仓库即可一键部署。
+#
+# ⚠️ 重要：持久盘（disk）需要付费套餐（Starter 及以上）。
+#    - 免费套餐（plan: free）不支持持久盘，文件系统是临时的，
+#      每次重新部署都会丢失档口上传的图片、审核记录、管理员账号（仅 seed 中的档口列表保留）。
+#    - 若要档口能长期自助上传，请把下方 plan 改为 starter（约 $7/月）并保留 disk 配置。
+#    - 若坚持用免费套餐：把 plan 改回 free，并删除下面的 disk: 整段（否则部署会报错）。
 services:
   - type: web
     name: ny-index
     runtime: docker
     dockerfilePath: ./Dockerfile
-    plan: free
+    plan: starter            # 持久盘要求付费套餐；免费套餐请改回 free 并删掉下方 disk 段
     healthCheckPath: /api/health
     envVars:
       - key: PORT
         value: "10000"
+      # 数据/上传目录指向持久盘挂载点，store.json 与图片都落在该盘内
+      - key: DATA_DIR
+        value: /app/data
+      # 自动生成加密随机串作为 JWT 签名密钥（也可在控制台手动覆盖）
       - key: JWT_SECRET
         generateValue: true
-    # 持久化：在 Render 控制台为该服务再添加 2 个 Disk（免费额度支持）
-    #   Disk 1:  Name=ny-data      Mount Path=/app/server/data
-    #   Disk 2:  Name=ny-uploads   Mount Path=/app/server/uploads
-    # 不挂磁盘也能跑，但每次重启上传的图片和审核记录会丢（仅适合演示）。
+      # 部署时弹窗让你输入管理员密码（强烈建议设置，不要留空）
+      - key: ADMIN_PASSWORD
+        sync: false
+    # 单个持久盘即可覆盖 store.json 与 uploads 两个子目录
+    disk:
+      name: ny-persist
+      mountPath: /app/data
+      sizeGB: 1

@@ -2810,10 +2810,5 @@
     }
   ],
   "products": [],
-  "admins": [
-    {
-      "username": "admin",
-      "passwordHash": "$2a$10$hkhYvUTIw41JSCe4nmXoOuDwB105DMUQiaZ48A/TWVyFbGFz2yS6i"
-    }
-  ]
+  "admins": []
 }

@@ -2,11 +2,30 @@ const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcryptjs');
 
-const DATA_FILE = path.join(__dirname, 'data', 'store.json');
+// 默认数据目录（本地开发）：server/data
+// 线上部署可通过环境变量 DATA_DIR 指向持久盘挂载目录（如 /app/data），实现数据持久化
+const DEFAULT_DATA_DIR = path.join(__dirname, 'data');
+const DATA_DIR = process.env.DATA_DIR || DEFAULT_DATA_DIR;
+const DATA_FILE = path.join(DATA_DIR, 'store.json');
+// 仓库内提交的种子文件（含 234 个档口），首次运行且 DATA_DIR 下无 store.json 时复制为运行数据
+const SEED_FILE = path.join(DEFAULT_DATA_DIR, 'seed.json');
+
+// 默认管理员密码（仅在未设置 ADMIN_PASSWORD 且 admins 为空时使用，强烈建议部署时通过环境变量设置）
+const DEFAULT_ADMIN_PASSWORD = '&qh%xqNbrS!f*HaR';
+
+function initStorage() {
+  if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+  if (!fs.existsSync(DATA_FILE)) {
+    const seed = fs.existsSync(SEED_FILE)
+      ? fs.readFileSync(SEED_FILE, 'utf-8')
+      : JSON.stringify({ stalls: [], products: [], admins: [] }, null, 2);
+    fs.writeFileSync(DATA_FILE, seed, 'utf-8');
+  }
+}
 
 function load() {
   if (!fs.existsSync(DATA_FILE)) {
-    return { stalls: [], products: [], admins: [] };
+    initStorage();
   }
   return JSON.parse(fs.readFileSync(DATA_FILE, 'utf-8'));
 }
@@ -97,14 +116,16 @@ function getAdmin(username) {
 }
 
 function ensureDefaultAdmin() {
+  initStorage();
   const data = load();
   if (data.admins.length === 0) {
+    const pw = process.env.ADMIN_PASSWORD || DEFAULT_ADMIN_PASSWORD;
     data.admins.push({
       username: 'admin',
-      passwordHash: bcrypt.hashSync('admin888', 10)
+      passwordHash: bcrypt.hashSync(pw, 10)
     });
     save(data);
-    console.log('[seed] 默认管理员已创建 -> admin / admin888');
+    console.log('[seed] 默认管理员已创建 -> admin / ' + (process.env.ADMIN_PASSWORD ? '(来自环境变量 ADMIN_PASSWORD)' : DEFAULT_ADMIN_PASSWORD));
   }
 }
 
