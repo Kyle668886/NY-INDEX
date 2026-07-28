@@ -11,7 +11,7 @@ services:
     name: ny-index
     runtime: docker
     dockerfilePath: ./Dockerfile
-    plan: starter            # 持久盘要求付费套餐；免费套餐请改回 free 并删掉下方 disk 段
+    plan: free              # 免费套餐不支持持久盘（数据重启会丢）；如需持久化改回 starter 并恢复下方 disk 段
     healthCheckPath: /api/health
     envVars:
       - key: PORT
@@ -25,8 +25,9 @@ services:
       # 部署时弹窗让你输入管理员密码（强烈建议设置，不要留空）
       - key: ADMIN_PASSWORD
         sync: false
-    # 单个持久盘即可覆盖 store.json 与 uploads 两个子目录
-    disk:
-      name: ny-persist
-      mountPath: /app/data
-      sizeGB: 1
+    # 免费套餐不支持持久盘，故此处不声明 disk。
+    # 如需数据持久化（档口上传不被重启清空）：把 plan 改回 starter，并加回下面这段：
+    #   disk:
+    #     name: ny-persist
+    #     mountPath: /app/data
+    #     sizeGB: 1
