@@ -1,0 +1,12 @@
+node_modules
+**/node_modules
+.workbuddy
+.git
+.gitignore
+*.bak
+*.log
+uploads/*
+!uploads/.gitkeep
+dist
+.DS_Store
+server/data/store.json.bak

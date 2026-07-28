@@ -1,0 +1,18 @@
+{
+  "name": "ny-index-server",
+  "version": "1.0.0",
+  "description": "南油趋势指数 - 档口产品图后端服务",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "seed": "node seed.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1",
+    "jsonwebtoken": "^9.0.2",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5"
+  }
+}

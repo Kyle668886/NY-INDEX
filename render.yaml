@@ -1,0 +1,18 @@
+# Render 部署蓝图（免费额度可用）
+# 在 Render 控制台 New → Blueprint → 连接本仓库即可。
+services:
+  - type: web
+    name: ny-index
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: PORT
+        value: "10000"
+      - key: JWT_SECRET
+        generateValue: true
+    # 持久化：在 Render 控制台为该服务再添加 2 个 Disk（免费额度支持）
+    #   Disk 1:  Name=ny-data      Mount Path=/app/server/data
+    #   Disk 2:  Name=ny-uploads   Mount Path=/app/server/uploads
+    # 不挂磁盘也能跑，但每次重启上传的图片和审核记录会丢（仅适合演示）。

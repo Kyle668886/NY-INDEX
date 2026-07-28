@@ -1,0 +1,8 @@
+node_modules/
+.workbuddy/
+*.bak
+*.log
+uploads/*
+!uploads/.gitkeep
+.DS_Store
+server/data/store.json.bak

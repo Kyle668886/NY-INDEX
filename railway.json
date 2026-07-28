@@ -1,0 +1,17 @@
+{
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "builder": "dockerfile",
+    "dockerfilePath": "Dockerfile"
+  },
+  "deploy": {
+    "startCommand": "node server/server.js",
+    "restartPolicyType": "ON_FAILURE",
+    "restartPolicyMaxRetries": 10,
+    "healthcheckPath": "/api/health",
+    "volumes": [
+      { "mountPath": "/app/server/data", "name": "ny-data" },
+      { "mountPath": "/app/server/uploads", "name": "ny-uploads" }
+    ]
+  }
+}

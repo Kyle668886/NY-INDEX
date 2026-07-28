@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no, maximum-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#F5F7FA">
+  <title>NY INDEX 南油趋势指数</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+
+    <!-- ===== S1: CEO Dashboard Home ===== -->
+    <div class="screen active" id="screen-home">
+      <div class="status-bar"><span class="status-time"></span><div class="status-icons"><svg class="status-icon" viewBox="0 0 17 12" fill="none"><rect x="0" y="8" width="3" height="4" rx="0.5" fill="#1A1D2D"/><rect x="4" y="5" width="3" height="7" rx="0.5" fill="#1A1D2D"/><rect x="8" y="2" width="3" height="10" rx="0.5" fill="#1A1D2D"/><rect x="12" y="0" width="3" height="12" rx="0.5" fill="#1A1D2D"/></svg><svg class="status-icon" viewBox="0 0 16 12" fill="none"><path d="M0.5 3.5C3 1.5 5.5 0.5 8 0.5s5 1 7.5 3" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round"/><path d="M2.5 6C4 4.5 6 3.5 8 3.5s4 1 5.5 2.5" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round"/><path d="M5 8.5C6 7.5 7 7 8 7s2 0.5 3 1.5" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="10" r="1" fill="#1A1D2D"/></svg><svg class="status-icon" viewBox="0 0 25 12" fill="none"><rect x="0" y="0" width="22" height="12" rx="2" stroke="#1A1D2D" stroke-width="1"/><rect x="2" y="2" width="18" height="8" rx="1" fill="#1A1D2D"/><rect x="23" y="3.5" width="2" height="5" rx="1" fill="#1A1D2D"/></svg></div></div>
+      <div class="screen-content">
+        <header class="home-header"><div class="brand"><h1 class="brand-title">NY INDEX</h1><p class="brand-subtitle">南油趋势指数</p></div><div class="header-actions"><button class="icon-btn" aria-label="通知"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2C10.5 2 9.25 3.25 9.25 4.75V5.25C7.15 5.88 5.5 7.88 5.5 10.25V15L4 16.5V17H20V16.5L18.5 15V10.25C18.5 7.88 16.85 5.88 14.75 5.25V4.75C14.75 3.25 13.5 2 12 2Z" stroke="#6B7288" stroke-width="1.5"/><path d="M10 18C10 19.1 10.9 20 12 20C13.1 20 14 19.1 14 18" stroke="#6B7288" stroke-width="1.5"/></svg></button><div class="avatar" id="home-avatar"><span>W</span><input type="file" accept="image/*" id="avatar-file-input" style="display:none"></div></div></header>
+        <div class="greeting-row"><span class="greeting-text">早上好，王总</span><span class="date-text">7月27日 周一</span></div>
+        <div class="card ai-summary-card"><div class="ai-summary-header"><div class="ai-label"><svg class="ai-spark" viewBox="0 0 18 18" fill="none"><path d="M9 1L10.5 6.5L16 7L11 10.5L12 16L9 12.5L6 16L7 10.5L2 7L7.5 6.5L9 1Z" fill="#A78BFA"/></svg><span class="ai-title">AI 今日总结</span></div><span class="view-more">查看详情 →</span></div><p class="ai-summary-text">静奢风热度持续上涨，老钱风指数达到92分，本周高端女装行业整体趋势向好。建议关注驼色系及羊毛面料档口，新中式风格增长指数突破18%</p></div>
+        <div class="metrics-grid">
+          <div class="metric-card"><span class="metric-label">今日行业指数</span><span class="metric-value gold">92.6</span><span class="trend-badge green">↑ +3.2</span></div>
+          <div class="metric-card"><span class="metric-label">热门趋势数</span><span class="metric-value">37</span><span class="trend-badge green">↑ 新增5</span></div>
+          <div class="metric-card"><span class="metric-label">增长最快风格</span><span class="metric-value green">+18.3%</span><span class="metric-sub">新中式</span></div>
+          <div class="metric-card"><span class="metric-label">新增会员</span><span class="metric-value">+248</span><span class="metric-sub muted">本月累计</span></div>
+        </div>
+        <!-- 主导航: 4大功能入口 -->
+        <div class="quick-nav">
+          <button class="quick-nav-btn" data-screen="recruit"><svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="7" r="3.5" stroke="#A78BFA" stroke-width="1.5"/><path d="M4 19c0-3.5 3-6 7-6s7 2.5 7 6" stroke="#A78BFA" stroke-width="1.5" stroke-linecap="round"/><path d="M16 4l1 2 2 .5-1.5 1.5.5 2L16 9.5 13.5 10l.5-2L12.5 6.5l2-.5L16 4z" fill="#A78BFA"/></svg><span>买手招募</span></button>
+          <button class="quick-nav-btn" data-screen="findstyle"><svg viewBox="0 0 22 22" fill="none"><circle cx="10" cy="10" r="7" stroke="#10B981" stroke-width="1.5"/><path d="M10 6v4l3 2" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/><path d="M16 16l3 3" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/></svg><span>一键找款</span></button>
+          <button class="quick-nav-btn" data-screen="banshan"><svg viewBox="0 0 22 22" fill="none"><path d="M3 18L8 8L13 13L19 3" stroke="#F97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="19" cy="3" r="2" fill="#F97316"/><path d="M2 19h18" stroke="#F97316" stroke-width="1.5" stroke-linecap="round"/></svg><span>半山邀</span></button>
+          <button class="quick-nav-btn" data-screen="tasks"><svg viewBox="0 0 22 22" fill="none"><rect x="3" y="4" width="16" height="15" rx="2" stroke="#1A1D2D" stroke-width="1.5"/><path d="M7 9l2 2 4-4" stroke="#10B981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 14h8" stroke="#6B7288" stroke-width="1.5" stroke-linecap="round"/></svg><span>今日任务</span></button>
+        </div>
+        <!-- 更多模块导航 -->
+        <div class="more-nav">
+          <button class="more-nav-btn" data-screen="stores"><svg viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="16" height="16" rx="3" stroke="#A78BFA" stroke-width="1.5"/><path d="M3 8H19M8 3V19" stroke="#A78BFA" stroke-width="1.5"/></svg><span>实体店</span></button>
+          <button class="more-nav-btn" data-screen="content"><svg viewBox="0 0 22 22" fill="none"><path d="M4 4H18V18H4V4Z" stroke="#10B981" stroke-width="1.5"/><path d="M7 8H15M7 11H13M7 14H15" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/></svg><span>AI获客</span></button>
+          <button class="more-nav-btn" data-screen="bi"><svg viewBox="0 0 22 22" fill="none"><rect x="3" y="12" width="4" height="7" rx="1" fill="#F97316"/><rect x="9" y="8" width="4" height="11" rx="1" fill="#A78BFA"/><rect x="15" y="4" width="4" height="15" rx="1" fill="#10B981"/></svg><span>数据中心</span></button>
+          <button class="more-nav-btn" data-screen="weather"><svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="9" r="5" fill="#A78BFA"/><path d="M11 3v2M11 15v2M5 9H3M19 9h2" stroke="#A78BFA" stroke-width="1.5" stroke-linecap="round"/><path d="M17 17c2 0 4 2 4 3s-1 2-4 2c-2 0-3-1-4-2" fill="#6B7288" opacity="0.5"/></svg><span>天气预报</span></button>
+        </div>
+        <section class="section"><div class="section-header"><h2 class="section-title">今日热门趋势</h2><span class="section-more">查看全部 →</span></div>
+          <div class="trend-list">
+            <div class="trend-item"><div class="trend-left"><div class="score-badge gold-gradient">92</div><span class="trend-name">老钱风</span></div><div class="trend-right"><span class="trend-growth green">↑ 增长中</span><svg class="trend-arrow" viewBox="0 0 16 16" fill="none"><path d="M4 10L8 6L12 10" stroke="#10B981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+            <div class="trend-item"><div class="trend-left"><div class="score-badge green">88</div><span class="trend-name">静奢风</span></div><div class="trend-right"><span class="trend-growth green">↑ 上升</span><svg class="trend-arrow" viewBox="0 0 16 16" fill="none"><path d="M4 10L8 6L12 10" stroke="#10B981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+            <div class="trend-item"><div class="trend-left"><div class="score-badge coral">76</div><span class="trend-name">新中式</span></div><div class="trend-right"><span class="trend-growth gold">↑ 增长中</span><svg class="trend-arrow" viewBox="0 0 16 16" fill="none"><path d="M4 10L8 6L12 10" stroke="#A78BFA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+          </div>
+        </section>
+        <section class="section"><h2 class="section-title">热门板块</h2>
+          <div class="category-grid">
+            <div class="category-card"><svg class="category-icon" viewBox="0 0 20 20" fill="none"><path d="M10 2L18 6V14L10 18L2 14V6L10 2Z" stroke="#A78BFA" stroke-width="1.5" fill="none"/></svg><span class="category-label">热门品牌</span><span class="category-value gold">Loro Piana</span></div>
+            <div class="category-card"><svg class="category-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" fill="#A78BFA"/></svg><span class="category-label">热门颜色</span><span class="category-value gold">驼色系</span></div>
+            <div class="category-card"><svg class="category-icon" viewBox="0 0 20 20" fill="none"><path d="M2 14L8 6L12 10L18 4" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/></svg><span class="category-label">热门面料</span><span class="category-value green">羊毛 / 羊绒</span></div>
+          </div>
+        </section>
+        <section class="section"><div class="section-header"><h2 class="section-title">热门档口</h2><span class="section-more">查看全部 →</span></div>
+          <div class="vendor-list">
+            <div class="vendor-item"><div class="vendor-left"><span class="vendor-name">渡己</span><span class="vendor-info">107栋 1F-F07 | 简约高端/静奢</span></div><div class="vendor-right"><span class="vendor-score">A+</span><span class="vendor-match green">AI评分 96</span></div></div>
+            <div class="vendor-item"><div class="vendor-left"><span class="vendor-name">MM+</span><span class="vendor-info">108栋 1F-128F | 网红TOP1</span></div><div class="vendor-right"><span class="vendor-score">A</span><span class="vendor-match green">AI评分 88</span></div></div>
+            <div class="vendor-item"><div class="vendor-left"><span class="vendor-name">国朴</span><span class="vendor-info">103栋 1F-A29 | 宋锦天花板</span></div><div class="vendor-right"><span class="vendor-score">A</span><span class="vendor-match muted">AI评分 86</span></div></div>
+          </div>
+        </section>
+      </div>
+      <div class="tab-bar"><div class="tab-pill"><button class="tab active" data-screen="home"><svg viewBox="0 0 18 18" fill="none"><path d="M3 7.5L9 2L15 7.5V16H11V11H7V16H3V7.5Z" fill="currentColor"/></svg><span>首页</span></button><button class="tab" data-screen="trend"><svg viewBox="0 0 18 18" fill="none"><path d="M2 16L5 10L8 13L11 6L16 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>趋势</span></button><button class="tab" data-screen="brand"><svg viewBox="0 0 18 18" fill="none"><path d="M9 1L16 5V13L9 17L2 13V5L9 1Z" stroke="currentColor" stroke-width="1.5"/></svg><span>品牌</span></button><button class="tab" data-screen="shop"><svg viewBox="0 0 18 18" fill="none"><path d="M3 3H15V15H3V3Z" stroke="currentColor" stroke-width="1.5"/><path d="M3 7H15" stroke="currentColor" stroke-width="1.5"/></svg><span>档口</span></button><button class="tab" data-screen="me"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="5" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M3 17C3 14 5.5 12 9 12S15 14 15 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>我</span></button></div></div>
+    </div>
+
+    <!-- ===== S2: Trend Engine ===== -->
+    <div class="screen" id="screen-trend">
+      <div class="status-bar"><span class="status-time"></span><div class="status-icons"><svg class="status-icon" viewBox="0 0 17 12" fill="none"><rect x="0" y="8" width="3" height="4" rx="0.5" fill="#1A1D2D"/><rect x="4" y="5" width="3" height="7" rx="0.5" fill="#1A1D2D"/><rect x="8" y="2" width="3" height="10" rx="0.5" fill="#1A1D2D"/><rect x="12" y="0" width="3" height="12" rx="0.5" fill="#1A1D2D"/></svg><svg class="status-icon" viewBox="0 0 16 12" fill="none"><path d="M0.5 3.5C3 1.5 5.5 0.5 8 0.5s5 1 7.5 3" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round"/><path d="M2.5 6C4 4.5 6 3.5 8 3.5s4 1 5.5 2.5" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round"/><path d="M5 8.5C6 7.5 7 7 8 7s2 0.5 3 1.5" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="10" r="1" fill="#1A1D2D"/></svg><svg class="status-icon" viewBox="0 0 25 12" fill="none"><rect x="0" y="0" width="22" height="12" rx="2" stroke="#1A1D2D" stroke-width="1"/><rect x="2" y="2" width="18" height="8" rx="1" fill="#1A1D2D"/><rect x="23" y="3.5" width="2" height="5" rx="1" fill="#1A1D2D"/></svg></div></div>
+      <div class="screen-header"><button class="back-btn" data-back="home"><svg viewBox="0 0 24 24" fill="none"><path d="M16 4L7 12L16 20" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h1 class="screen-title">趋势引擎</h1></div>
+      <div class="screen-content">
+        <div class="card trend-overview-card"><div class="trend-overview-left"><span class="trend-overview-label">南油趋势指数</span><span class="trend-overview-score">92.6</span></div><div class="trend-overview-right"><span class="trend-overview-badge">▲ +18.3%</span><span class="trend-overview-sub">较上月</span></div></div>
+        <section class="section"><h2 class="section-title">热门趋势 TOP5</h2><div class="rank-list" id="trend-rank-list">
+          <div class="rank-item" data-type="trend"><div class="rank-left"><span class="rank-badge gold">1</span><span class="rank-name">老钱风</span></div><div class="rank-right"><span class="rank-score">92</span></div></div>
+          <div class="rank-item" data-type="trend"><div class="rank-left"><span class="rank-badge">2</span><span class="rank-name">静奢风</span></div><div class="rank-right"><span class="rank-score">88</span></div></div>
+          <div class="rank-item" data-type="trend"><div class="rank-left"><span class="rank-badge">3</span><span class="rank-name">新中式</span></div><div class="rank-right"><span class="rank-score">76</span></div></div>
+          <div class="rank-item" data-type="trend"><div class="rank-left"><span class="rank-badge">4</span><span class="rank-name">极简通勤</span></div><div class="rank-right"><span class="rank-score">69</span></div></div>
+          <div class="rank-item" data-type="trend"><div class="rank-left"><span class="rank-badge">5</span><span class="rank-name">街头机能</span></div><div class="rank-right"><span class="rank-score">63</span></div></div>
+        </div></section>
+        <div class="category-tabs"><button class="category-tab active" data-cat="styles">风格</button><button class="category-tab" data-cat="colors">颜色</button><button class="category-tab" data-cat="fabrics">面料</button></div>
+        <div class="card chart-card"><div class="chart-header-row"><span class="chart-title" id="trend-chart-title">老钱风走势</span><span class="chart-unit">近30天</span></div><div class="chart-area"><svg viewBox="0 0 326 120" preserveAspectRatio="none" class="chart-svg"><line x1="0" y1="90" x2="326" y2="90" stroke="#E5E7EB" stroke-width="0.5"/><line x1="0" y1="60" x2="326" y2="60" stroke="#E5E7EB" stroke-width="0.5"/><path d="M0 80 C30 75 60 60 90 55 C120 45 150 50 180 40 C210 30 240 25 270 20 C300 18 330 15 326 10" stroke="#A78BFA" stroke-width="2" fill="none"/><circle cx="326" cy="10" r="4" fill="#A78BFA"/></svg></div></div>
+        <div class="card fashion-insight-card"><div class="fashion-insight-header"><svg viewBox="0 0 18 18" fill="none"><path d="M9 1L10.5 6.5L16 7L11 10.5L12 16L9 12.5L6 16L7 10.5L2 7L7.5 6.5L9 1Z" fill="#A78BFA"/></svg><span>趋势建议</span></div><p>老钱风持续走强，建议加大米白、驼色、深灰等色系备货，重点关注羊毛、羊绒材质的高端大衣与西装外套。</p></div>
+      </div>
+      <div class="tab-bar"><div class="tab-pill"><button class="tab" data-screen="home"><svg viewBox="0 0 18 18" fill="none"><path d="M3 7.5L9 2L15 7.5V16H11V11H7V16H3V7.5Z" stroke="currentColor" stroke-width="1.5"/></svg><span>首页</span></button><button class="tab active" data-screen="trend"><svg viewBox="0 0 18 18" fill="none"><path d="M2 16L5 10L8 13L11 6L16 2" stroke="currentColor" stroke-width="1.5"/></svg><span>趋势</span></button><button class="tab" data-screen="brand"><svg viewBox="0 0 18 18" fill="none"><path d="M9 1L16 5V13L9 17L2 13V5L9 1Z" stroke="currentColor" stroke-width="1.5"/></svg><span>品牌</span></button><button class="tab" data-screen="shop"><svg viewBox="0 0 18 18" fill="none"><path d="M3 3H15V15H3V3Z" stroke="currentColor" stroke-width="1.5"/><path d="M3 7H15" stroke="currentColor" stroke-width="1.5"/></svg><span>档口</span></button><button class="tab" data-screen="me"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="5" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M3 17C3 14 5.5 12 9 12S15 14 15 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>我</span></button></div></div>
+    </div>
+
+    <!-- ===== S3: Brand Database ===== -->
+    <div class="screen" id="screen-brand">
+      <div class="status-bar"><span class="status-time"></span><div class="status-icons"><svg class="status-icon" viewBox="0 0 17 12" fill="none"><rect x="0" y="8" width="3" height="4" rx="0.5" fill="#1A1D2D"/><rect x="4" y="5" width="3" height="7" rx="0.5" fill="#1A1D2D"/><rect x="8" y="2" width="3" height="10" rx="0.5" fill="#1A1D2D"/><rect x="12" y="0" width="3" height="12" rx="0.5" fill="#1A1D2D"/></svg><svg class="status-icon" viewBox="0 0 16 12" fill="none"><path d="M0.5 3.5C3 1.5 5.5 0.5 8 0.5s5 1 7.5 3" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round"/><path d="M2.5 6C4 4.5 6 3.5 8 3.5s4 1 5.5 2.5" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round"/><path d="M5 8.5C6 7.5 7 7 8 7s2 0.5 3 1.5" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="10" r="1" fill="#1A1D2D"/></svg><svg class="status-icon" viewBox="0 0 25 12" fill="none"><rect x="0" y="0" width="22" height="12" rx="2" stroke="#1A1D2D" stroke-width="1"/><rect x="2" y="2" width="18" height="8" rx="1" fill="#1A1D2D"/><rect x="23" y="3.5" width="2" height="5" rx="1" fill="#1A1D2D"/></svg></div></div>
+      <div class="screen-header"><button class="back-btn" data-back="home"><svg viewBox="0 0 24 24" fill="none"><path d="M16 4L7 12L16 20" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h1 class="screen-title">品牌数据库</h1></div>
+      <div class="screen-content">
+        <div class="card search-bar"><svg class="search-icon" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="#6B7288" stroke-width="1.5"/><path d="M11 11l3 3" stroke="#6B7288" stroke-width="1.5" stroke-linecap="round"/></svg><input type="text" class="search-input" id="brand-search-input" placeholder="搜索品牌 / 风格 / 设计师" /></div>
+        <div class="filter-tabs"><button class="filter-tab active" data-filter="hot">热门</button><button class="filter-tab" data-filter="luxury">高奢</button><button class="filter-tab" data-filter="designer">独立设计师</button><button class="filter-tab" data-filter="niche">小众</button></div>
+        <section class="section"><h2 class="section-title">品牌榜单 TOP5</h2><div class="rank-list" id="brand-rank-list">
+          <div class="rank-item" data-type="brand"><div class="rank-left"><span class="rank-badge gold">1</span><div class="rank-info"><span class="rank-name">MUSE</span><span class="rank-tag">极简 · 高奢 · 复购率 92%</span></div></div><span class="rank-score">98</span></div>
+          <div class="rank-item" data-type="brand"><div class="rank-left"><span class="rank-badge">2</span><div class="rank-info"><span class="rank-name">LAN</span><span class="rank-tag">新中式 · 轻奢 · 热度 +18%</span></div></div><span class="rank-score">95</span></div>
+          <div class="rank-item" data-type="brand"><div class="rank-left"><span class="rank-badge">3</span><div class="rank-info"><span class="rank-name">O2ND</span><span class="rank-tag">韩系 · 通勤 · 热度 +12%</span></div></div><span class="rank-score">91</span></div>
+          <div class="rank-item" data-type="brand"><div class="rank-left"><span class="rank-badge">4</span><div class="rank-info"><span class="rank-name">VIKTORIACHAN</span><span class="rank-tag">静奢风 · 小众 · 热度 +9%</span></div></div><span class="rank-score">88</span></div>
+          <div class="rank-item" data-type="brand"><div class="rank-left"><span class="rank-badge">5</span><div class="rank-info"><span class="rank-name">YOEYYOU</span><span class="rank-tag">极简 · 通勤 · 热度 +7%</span></div></div><span class="rank-score">85</span></div>
+        </div></section>
+        <section class="section"><h2 class="section-title">品牌推荐</h2><div class="rec-grid" id="brand-rec-grid">
+          <div class="rec-grid-card" data-type="brand"><div class="rec-grid-logo gold">M</div><span class="rec-grid-name">MUSE</span><span class="rec-grid-tag">极简 · 高奢</span></div>
+          <div class="rec-grid-card" data-type="brand"><div class="rec-grid-logo">L</div><span class="rec-grid-name">LAN</span><span class="rec-grid-tag">新中式 · 轻奢</span></div>
+          <div class="rec-grid-card" data-type="brand"><div class="rec-grid-logo coral">R</div><span class="rec-grid-name">RUOHAN</span><span class="rec-grid-tag">静奢 · 极简</span></div>
+          <div class="rec-grid-card" data-type="brand"><div class="rec-grid-logo gold">U</div><span class="rec-grid-name">UMAWANG</span><span class="rec-grid-tag">东方 · 高奢</span></div>
+        </div></section>
+      </div>
+      <div class="tab-bar"><div class="tab-pill"><button class="tab" data-screen="home"><svg viewBox="0 0 18 18" fill="none"><path d="M3 7.5L9 2L15 7.5V16H11V11H7V16H3V7.5Z" stroke="currentColor" stroke-width="1.5"/></svg><span>首页</span></button><button class="tab" data-screen="trend"><svg viewBox="0 0 18 18" fill="none"><path d="M2 16L5 10L8 13L11 6L16 2" stroke="currentColor" stroke-width="1.5"/></svg><span>趋势</span></button><button class="tab active" data-screen="brand"><svg viewBox="0 0 18 18" fill="none"><path d="M9 1L16 5V13L9 17L2 13V5L9 1Z" stroke="currentColor" stroke-width="1.5"/></svg><span>品牌</span></button><button class="tab" data-screen="shop"><svg viewBox="0 0 18 18" fill="none"><path d="M3 3H15V15H3V3Z" stroke="currentColor" stroke-width="1.5"/><path d="M3 7H15" stroke="currentColor" stroke-width="1.5"/></svg><span>档口</span></button><button class="tab" data-screen="me"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="5" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M3 17C3 14 5.5 12 9 12S15 14 15 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>我</span></button></div></div>
+    </div>
+
+    <!-- ===== S4: Shop Database ===== -->
+    <div class="screen" id="screen-shop">
+      <div class="status-bar"><span class="status-time"></span><div class="status-icons"><svg class="status-icon" viewBox="0 0 17 12" fill="none"><rect x="0" y="8" width="3" height="4" rx="0.5" fill="#1A1D2D"/><rect x="4" y="5" width="3" height="7" rx="0.5" fill="#1A1D2D"/><rect x="8" y="2" width="3" height="10" rx="0.5" fill="#1A1D2D"/><rect x="12" y="0" width="3" height="12" rx="0.5" fill="#1A1D2D"/></svg><svg class="status-icon" viewBox="0 0 16 12" fill="none"><path d="M0.5 3.5C3 1.5 5.5 0.5 8 0.5s5 1 7.5 3" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round"/><path d="M2.5 6C4 4.5 6 3.5 8 3.5s4 1 5.5 2.5" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round"/><path d="M5 8.5C6 7.5 7 7 8 7s2 0.5 3 1.5" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="10" r="1" fill="#1A1D2D"/></svg><svg class="status-icon" viewBox="0 0 25 12" fill="none"><rect x="0" y="0" width="22" height="12" rx="2" stroke="#1A1D2D" stroke-width="1"/><rect x="2" y="2" width="18" height="8" rx="1" fill="#1A1D2D"/><rect x="23" y="3.5" width="2" height="5" rx="1" fill="#1A1D2D"/></svg></div></div>
+      <div class="screen-header"><button class="back-btn" data-back="home"><svg viewBox="0 0 24 24" fill="none"><path d="M16 4L7 12L16 20" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h1 class="screen-title">档口数据库</h1></div>
+      <div class="screen-content">
+        <div class="card search-bar"><svg class="search-icon" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="#6B7288" stroke-width="1.5"/><path d="M11 11l3 3" stroke="#6B7288" stroke-width="1.5" stroke-linecap="round"/></svg><input type="text" class="search-input" id="shop-search-input" placeholder="搜索档口 / 楼层 / 品类" /></div>
+        <div class="filter-tabs"><button class="filter-tab active" data-filter="all">综合</button><button class="filter-tab" data-filter="oldmoney">老钱风</button><button class="filter-tab" data-filter="guofeng">国风</button><button class="filter-tab" data-filter="judao">聚道</button><button class="filter-tab" data-filter="resort">度假风</button><button class="filter-tab" data-filter="niche">小众原创</button><button class="filter-tab" data-filter="107">107栋</button><button class="filter-tab" data-filter="108">108栋</button><button class="filter-tab" data-filter="110">110栋</button><button class="filter-tab" data-filter="guihang">贵航</button><button class="filter-tab" data-filter="shangdao">尚道</button><button class="filter-tab" data-filter="jinhui">金晖</button></div>
+        <section class="section"><h2 class="section-title">档口榜单 TOP10</h2><div class="rank-list" id="shop-rank-list">
+          <div class="rank-item" data-type="shop"><div class="rank-left"><span class="rank-badge gold">1</span><div class="rank-info"><span class="rank-name">渡己</span><span class="rank-tag">107栋 1F-F07 · 简约高端/静奢</span></div></div><span class="rank-score">96</span></div>
+          <div class="rank-item" data-type="shop"><div class="rank-left"><span class="rank-badge">2</span><div class="rank-info"><span class="rank-name">锦衣薇</span><span class="rank-tag">103栋 1F-A03 · 高端原创新中式</span></div></div><span class="rank-score">87</span></div>
+          <div class="rank-item" data-type="shop"><div class="rank-left"><span class="rank-badge">3</span><div class="rank-info"><span class="rank-name">MM+</span><span class="rank-tag">108栋 1F-128F · 网红TOP1</span></div></div><span class="rank-score">88</span></div>
+          <div class="rank-item" data-type="shop"><div class="rank-left"><span class="rank-badge">4</span><div class="rank-info"><span class="rank-name">嘉言</span><span class="rank-tag">107栋 1F-C11 · 老钱风/羊绒</span></div></div><span class="rank-score">91</span></div>
+          <div class="rank-item" data-type="shop"><div class="rank-left"><span class="rank-badge">5</span><div class="rank-info"><span class="rank-name">国朴</span><span class="rank-tag">103栋 1F-A29 · 宋锦天花板</span></div></div><span class="rank-score">86</span></div>
+          <div class="rank-item" data-type="shop"><div class="rank-left"><span class="rank-badge">6</span><div class="rank-info"><span class="rank-name">RS尚善若水</span><span class="rank-tag">108栋 1F-C27 · 国风原创</span></div></div><span class="rank-score">86</span></div>
+          <div class="rank-item" data-type="shop"><div class="rank-left"><span class="rank-badge">7</span><div class="rank-info"><span class="rank-name">玫瑰人生</span><span class="rank-tag">107栋 2F-D09 · 新中式/国风</span></div></div><span class="rank-score">88</span></div>
+          <div class="rank-item" data-type="shop"><div class="rank-left"><span class="rank-badge">8</span><div class="rank-info"><span class="rank-name">着印</span><span class="rank-tag">110栋 1F-F28 · 老钱风/亚麻丝绒</span></div></div><span class="rank-score">84</span></div>
+          <div class="rank-item" data-type="shop"><div class="rank-left"><span class="rank-badge">9</span><div class="rank-info"><span class="rank-name">呱呱</span><span class="rank-tag">111栋 2F-A096 · 高端重工中式</span></div></div><span class="rank-score">86</span></div>
+          <div class="rank-item" data-type="shop"><div class="rank-left"><span class="rank-badge">10</span><div class="rank-info"><span class="rank-name">coco+</span><span class="rank-tag">108栋 2F-280 · 工厂品牌/全品类</span></div></div><span class="rank-score">82</span></div>
+        </div></section>
+        <section class="section"><h2 class="section-title">档口推荐</h2><div class="rec-grid" id="shop-rec-grid">
+          <div class="rec-grid-card" data-type="shop"><div class="rec-grid-logo gold">渡</div><span class="rec-grid-name">渡己</span><span class="rec-grid-tag">107栋 1F · 简约高端</span></div>
+          <div class="rec-grid-card" data-type="shop"><div class="rec-grid-logo green">MM</div><span class="rec-grid-name">MM+</span><span class="rec-grid-tag">108栋 1F · 网红TOP1</span></div>
+          <div class="rec-grid-card" data-type="shop"><div class="rec-grid-logo coral">国</div><span class="rec-grid-name">国朴</span><span class="rec-grid-tag">103栋 1F · 宋锦天花板</span></div>
+          <div class="rec-grid-card" data-type="shop"><div class="rec-grid-logo">着</div><span class="rec-grid-name">着印</span><span class="rec-grid-tag">110栋 1F · 老钱风</span></div>
+        </div></section>
+      </div>
+      <div class="tab-bar"><div class="tab-pill"><button class="tab" data-screen="home"><svg viewBox="0 0 18 18" fill="none"><path d="M3 7.5L9 2L15 7.5V16H11V11H7V16H3V7.5Z" stroke="currentColor" stroke-width="1.5"/></svg><span>首页</span></button><button class="tab" data-screen="trend"><svg viewBox="0 0 18 18" fill="none"><path d="M2 16L5 10L8 13L11 6L16 2" stroke="currentColor" stroke-width="1.5"/></svg><span>趋势</span></button><button class="tab" data-screen="brand"><svg viewBox="0 0 18 18" fill="none"><path d="M9 1L16 5V13L9 17L2 13V5L9 1Z" stroke="currentColor" stroke-width="1.5"/></svg><span>品牌</span></button><button class="tab active" data-screen="shop"><svg viewBox="0 0 18 18" fill="none"><path d="M3 3H15V15H3V3Z" stroke="currentColor" stroke-width="1.5"/><path d="M3 7H15" stroke="currentColor" stroke-width="1.5"/></svg><span>档口</span></button><button class="tab" data-screen="me"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="5" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M3 17C3 14 5.5 12 9 12S15 14 15 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>我</span></button></div></div>
+    </div>
+
+    <!-- ===== S5: Store Database ===== -->
+    <div class="screen" id="screen-stores">
+      <div class="status-bar"><span class="status-time"></span><div class="status-icons"><svg class="status-icon" viewBox="0 0 17 12" fill="none"><rect x="0" y="8" width="3" height="4" rx="0.5" fill="#1A1D2D"/><rect x="4" y="5" width="3" height="7" rx="0.5" fill="#1A1D2D"/><rect x="8" y="2" width="3" height="10" rx="0.5" fill="#1A1D2D"/><rect x="12" y="0" width="3" height="12" rx="0.5" fill="#1A1D2D"/></svg><svg class="status-icon" viewBox="0 0 16 12" fill="none"><path d="M0.5 3.5C3 1.5 5.5 0.5 8 0.5s5 1 7.5 3" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round"/><path d="M2.5 6C4 4.5 6 3.5 8 3.5s4 1 5.5 2.5" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round"/><path d="M5 8.5C6 7.5 7 7 8 7s2 0.5 3 1.5" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="10" r="1" fill="#1A1D2D"/></svg><svg class="status-icon" viewBox="0 0 25 12" fill="none"><rect x="0" y="0" width="22" height="12" rx="2" stroke="#1A1D2D" stroke-width="1"/><rect x="2" y="2" width="18" height="8" rx="1" fill="#1A1D2D"/><rect x="23" y="3.5" width="2" height="5" rx="1" fill="#1A1D2D"/></svg></div></div>
+      <div class="screen-header"><button class="back-btn" data-back="home"><svg viewBox="0 0 24 24" fill="none"><path d="M16 4L7 12L16 20" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h1 class="screen-title">实体店数据库</h1></div>
+      <div class="screen-content">
+        <div class="store-stat-grid"><div class="store-stat-card"><span class="store-stat-label">覆盖城市</span><span class="store-stat-value gold">5</span></div><div class="store-stat-card"><span class="store-stat-label">门店总数</span><span class="store-stat-value">1,280</span></div><div class="store-stat-card"><span class="store-stat-label">平均增长</span><span class="store-stat-value green">+12%</span></div></div>
+        <div class="filter-tabs"><button class="filter-tab active" data-filter="all">综合</button><button class="filter-tab" data-filter="growth">增长最快</button><button class="filter-tab" data-filter="price">高客单价</button><button class="filter-tab" data-filter="area">大面积</button></div>
+        <section class="section"><h2 class="section-title">全国门店排行</h2><div class="rank-list" id="store-list">
+          <div class="rank-item" data-type="store"><div class="rank-left"><span class="rank-badge gold">1</span><div class="rank-info"><span class="rank-name">京奢名店</span><span class="rank-tag">北京 · 高奢/老钱风 · ¥3000-8000</span></div></div><span class="rank-score gold">98</span></div>
+          <div class="rank-item" data-type="store"><div class="rank-left"><span class="rank-badge">2</span><div class="rank-info"><span class="rank-name">静奢生活馆</span><span class="rank-tag">上海 · 静奢/老钱风 · ¥2000-5000</span></div></div><span class="rank-score">95</span></div>
+          <div class="rank-item" data-type="store"><div class="rank-left"><span class="rank-badge">3</span><div class="rank-info"><span class="rank-name">蜀雅衣舍</span><span class="rank-tag">成都 · 新中式/轻奢 · ¥800-2000</span></div></div><span class="rank-score">88</span></div>
+          <div class="rank-item" data-type="store"><div class="rank-left"><span class="rank-badge">4</span><div class="rank-info"><span class="rank-name">雅韵衣坊</span><span class="rank-tag">杭州 · 极简/通勤 · ¥1500-3500</span></div></div><span class="rank-score">82</span></div>
+          <div class="rank-item" data-type="store"><div class="rank-left"><span class="rank-badge">5</span><div class="rank-info"><span class="rank-name">南风雅舍</span><span class="rank-tag">广州 · 韩系/通勤 · ¥600-1500</span></div></div><span class="rank-score">78</span></div>
+        </div></section>
+        <div class="card chart-card"><div class="chart-header-row"><span class="chart-title">各城市风格偏好</span><span class="chart-unit">数据来源: NY INDEX</span></div><div class="chart-area"><svg viewBox="0 0 326 120" preserveAspectRatio="none" class="chart-svg"><text x="20" y="25" font-size="10" fill="#A78BFA" font-family="Inter">上海: 静奢风 68%</text><text x="20" y="50" font-size="10" fill="#10B981" font-family="Inter">成都: 新中式 55%</text><text x="20" y="75" font-size="10" fill="#F97316" font-family="Inter">杭州: 极简通勤 60%</text><text x="20" y="100" font-size="10" fill="#1A1D2D" font-family="Inter">北京: 老钱风 72%</text><rect x="140" y="15" width="160" height="12" rx="6" fill="#E5E7EB"/><rect x="140" y="15" width="108" height="12" rx="6" fill="#A78BFA"/><rect x="140" y="40" width="160" height="12" rx="6" fill="#E5E7EB"/><rect x="140" y="40" width="88" height="12" rx="6" fill="#10B981"/><rect x="140" y="65" width="160" height="12" rx="6" fill="#E5E7EB"/><rect x="140" y="65" width="96" height="12" rx="6" fill="#F97316"/><rect x="140" y="90" width="160" height="12" rx="6" fill="#E5E7EB"/><rect x="140" y="90" width="115" height="12" rx="6" fill="#1A1D2D" opacity="0.7"/></svg></div></div>
+      </div>
+      <div class="tab-bar"><div class="tab-pill"><button class="tab" data-screen="home"><svg viewBox="0 0 18 18" fill="none"><path d="M3 7.5L9 2L15 7.5V16H11V11H7V16H3V7.5Z" stroke="currentColor" stroke-width="1.5"/></svg><span>首页</span></button><button class="tab" data-screen="trend"><svg viewBox="0 0 18 18" fill="none"><path d="M2 16L5 10L8 13L11 6L16 2" stroke="currentColor" stroke-width="1.5"/></svg><span>趋势</span></button><button class="tab" data-screen="brand"><svg viewBox="0 0 18 18" fill="none"><path d="M9 1L16 5V13L9 17L2 13V5L9 1Z" stroke="currentColor" stroke-width="1.5"/></svg><span>品牌</span></button><button class="tab" data-screen="shop"><svg viewBox="0 0 18 18" fill="none"><path d="M3 3H15V15H3V3Z" stroke="currentColor" stroke-width="1.5"/><path d="M3 7H15" stroke="currentColor" stroke-width="1.5"/></svg><span>档口</span></button><button class="tab" data-screen="me"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="5" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M3 17C3 14 5.5 12 9 12S15 14 15 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>我</span></button></div></div>
+    </div>
+
+    <!-- ===== S6: AI Decision Center ===== -->
+    <!-- ===== AI决策中心（从AI获客入口进入） ===== -->
+    <div class="screen" id="screen-ai">
+      <div class="status-bar"><span class="status-time"></span></div>
+      <div class="screen-header"><button class="back-btn" data-back="content"><svg viewBox="0 0 24 24" fill="none"><path d="M16 4L7 12L16 20" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h1 class="screen-title">AI 决策中心</h1></div>
+      <div class="screen-content ai-content">
+        <div class="ai-input-area"><input type="text" class="ai-input-field" id="ai-input-text" placeholder="问趋势：今年静奢还能做吗？" /><button class="ai-submit-btn" id="ai-send-btn"><svg viewBox="0 0 20 20" fill="none"><path d="M2 18L18 10L2 2V7L10 10L2 13V18Z" fill="#FFFFFF"/></svg></button></div>
+        <div id="ai-response-area">
+          <div class="card response-card" style="border:1px solid var(--border-gold);display:flex;flex-direction:column;gap:12px"><div class="response-header"><svg class="response-icon" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#A78BFA" stroke-width="1.5"/><path d="M5 9H13M9 5V13" stroke="#A78BFA" stroke-width="1.5"/></svg><span class="response-title">NY INDEX AI 分析</span></div><p class="response-text">静奢风未来3-6个月仍具持续性。Loro Piana、The Row持续引领，南油A座、B座相关档口出货稳定。建议优先备货驼色、燕麦色系羊毛/羊绒单品。</p></div>
+          <section class="section" style="margin-top:16px"><h2 class="section-title">数据依据</h2><div class="card chart-card"><span class="chart-title">静奢风热度走势（近30天）</span><div class="chart-area"><svg viewBox="0 0 326 120" preserveAspectRatio="none" class="chart-svg"><defs><linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#A78BFA" stop-opacity="0.25"/><stop offset="100%" stop-color="#A78BFA" stop-opacity="0"/></linearGradient></defs><path d="M0 100 C40 95 60 80 100 75 S160 60 200 55 S280 30 326 25 L326 120 L0 120 Z" fill="url(#chartGradient)"/><path d="M0 100 C40 95 60 80 100 75 S160 60 200 55 S280 30 326 25" stroke="#A78BFA" stroke-width="3" fill="none" stroke-linecap="round"/></svg></div><div class="chart-value-row"><span class="chart-score">热度指数 88</span><span class="chart-growth green">↑ +12.4%</span></div></div></section>
+          <section class="section" style="margin-top:16px"><h2 class="section-title">智能推荐</h2><div class="card rec-card"><span class="rec-label">参考品牌</span><div class="brand-tags"><span class="brand-tag">Loro Piana</span><span class="brand-tag">The Row</span><span class="brand-tag">Toteme</span></div></div><div class="card rec-card"><span class="rec-label">推荐档口</span><div class="vendor-rec-item"><span class="vendor-rec-name">MUSE 静奢工作室</span><span class="vendor-rec-score">匹配度 96%</span></div></div></section>
+          <div class="action-buttons" style="margin-top:16px"><button class="btn-primary">生成完整报告</button><button class="btn-secondary">继续追问</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== S6: AI获客（原内容中心 + AI决策中心合并） ===== -->
+    <div class="screen" id="screen-content">
+      <div class="status-bar"><span class="status-time"></span></div>
+      <div class="screen-header"><button class="back-btn" data-back="home"><svg viewBox="0 0 24 24" fill="none"><path d="M16 4L7 12L16 20" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h1 class="screen-title">AI获客</h1></div>
+      <div class="screen-content">
+        <!-- AI决策中心入口 -->
+        <div class="card content-source-card" style="cursor:pointer" id="ai-decision-entry"><div class="content-source-header"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#A78BFA" stroke-width="1.5"/><path d="M5 9H13M9 5V13" stroke="#A78BFA" stroke-width="1.5"/></svg><span class="content-source-title">AI 决策中心</span></div><p class="content-source-text">问趋势、问面料、问备货策略 — AI实时分析南油数据</p></div>
+        <!-- AI换装入口 -->
+        <div class="card content-source-card" style="cursor:pointer" id="ai-cloth-entry"><div class="content-source-header"><svg viewBox="0 0 18 18" fill="none"><path d="M9 2C6 2 4 5 4 7s2 3.5 5 3.5 5-1.5 5-3.5-2-5-5-5z" stroke="#10B981" stroke-width="1.5"/><path d="M4 10c-1 2-1 4 0 5h10c1-1 1-3 0-5" stroke="#10B981" stroke-width="1.5"/><path d="M13 3l1.5 2 2 .5-1.5 1.5.5 2-2-1L12 7l.5-2L11 5.5l1.5-.5L13 3z" fill="#A78BFA" opacity="0.6"/></svg><span class="content-source-title">AI 换装</span></div><p class="content-source-text">模特穿上穿搭图里的衣服 · 超自然变装 · 保留人物特征</p></div>
+        <!-- 今日趋势数据源 -->
+        <div class="card content-source-card"><div class="content-source-header"><svg viewBox="0 0 18 18" fill="none"><path d="M9 1L10.5 6.5L16 7L11 10.5L12 16L9 12.5L6 16L7 10.5L2 7L7.5 6.5L9 1Z" fill="#A78BFA"/></svg><span class="content-source-title">今日趋势数据源</span></div><p class="content-source-text">老钱风指数92↑ | 静奢风指数88↑ | 新中式增长+18.3% | 驼色系需求↑15%</p></div>
+        <section class="section"><h2 class="section-title">一键生成内容</h2><div class="content-template-grid">
+          <button class="content-template-btn content-gen-btn" data-type="wechat"><span class="content-icon">📝</span><span class="content-name">公众号</span><span class="content-desc">一键生成推文</span></button>
+          <button class="content-template-btn content-gen-btn" data-type="video"><span class="content-icon">🎬</span><span class="content-name">短视频</span><span class="content-desc">15秒脚本</span></button>
+          <button class="content-template-btn content-gen-btn" data-type="live"><span class="content-icon">🎤</span><span class="content-name">直播话术</span><span class="content-desc">推荐词</span></button>
+          <button class="content-template-btn content-gen-btn" data-type="moments"><span class="content-icon">💬</span><span class="content-name">朋友圈</span><span class="content-desc">配图文案</span></button>
+          <button class="content-template-btn content-gen-btn" data-type="redbook"><span class="content-icon">📕</span><span class="content-name">小红书</span><span class="content-desc">种草笔记</span></button>
+          <button class="content-template-btn content-gen-btn" data-type="weibo"><span class="content-icon">📢</span><span class="content-name">微博</span><span class="content-desc">热点话题</span></button>
+          <button class="content-template-btn content-gen-btn" data-type="videochannel"><span class="content-icon">📺</span><span class="content-name">视频号</span><span class="content-desc">短视频文案</span></button>
+          <button class="content-template-btn content-gen-btn" data-type="report"><span class="content-icon">📊</span><span class="content-name">周报</span><span class="content-desc">数据周报</span></button>
+        </div></section>
+        <div class="card fashion-insight-card"><div class="fashion-insight-header"><svg viewBox="0 0 18 18" fill="none"><path d="M9 1L10.5 6.5L16 7L11 10.5L12 16L9 12.5L6 16L7 10.5L2 7L7.5 6.5L9 1Z" fill="#A78BFA"/></svg><span>AI 内容策略</span></div><p>本周核心信息：老钱风持续走强 + 驼色系上涨。建议主推公众号周报和短视频脚本。</p></div>
+      </div>
+      <div class="tab-bar"><div class="tab-pill"><button class="tab" data-screen="home"><svg viewBox="0 0 18 18" fill="none"><path d="M3 7.5L9 2L15 7.5V16H11V11H7V16H3V7.5Z" stroke="currentColor" stroke-width="1.5"/></svg><span>首页</span></button><button class="tab" data-screen="trend"><svg viewBox="0 0 18 18" fill="none"><path d="M2 16L5 10L8 13L11 6L16 2" stroke="currentColor" stroke-width="1.5"/></svg><span>趋势</span></button><button class="tab" data-screen="brand"><svg viewBox="0 0 18 18" fill="none"><path d="M9 1L16 5V13L9 17L2 13V5L9 1Z" stroke="currentColor" stroke-width="1.5"/></svg><span>品牌</span></button><button class="tab" data-screen="shop"><svg viewBox="0 0 18 18" fill="none"><path d="M3 3H15V15H3V3Z" stroke="currentColor" stroke-width="1.5"/><path d="M3 7H15" stroke="currentColor" stroke-width="1.5"/></svg><span>档口</span></button><button class="tab" data-screen="me"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="5" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M3 17C3 14 5.5 12 9 12S15 14 15 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>我</span></button></div></div>
+    </div>
+
+    <!-- ===== S8: BI Data Center ===== -->
+    <div class="screen" id="screen-bi">
+      <div class="status-bar"><span class="status-time"></span><div class="status-icons"><svg class="status-icon" viewBox="0 0 17 12" fill="none"><rect x="0" y="8" width="3" height="4" rx="0.5" fill="#1A1D2D"/><rect x="4" y="5" width="3" height="7" rx="0.5" fill="#1A1D2D"/><rect x="8" y="2" width="3" height="10" rx="0.5" fill="#1A1D2D"/><rect x="12" y="0" width="3" height="12" rx="0.5" fill="#1A1D2D"/></svg><svg class="status-icon" viewBox="0 0 16 12" fill="none"><path d="M0.5 3.5C3 1.5 5.5 0.5 8 0.5s5 1 7.5 3" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round"/><path d="M2.5 6C4 4.5 6 3.5 8 3.5s4 1 5.5 2.5" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round"/><path d="M5 8.5C6 7.5 7 7 8 7s2 0.5 3 1.5" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="10" r="1" fill="#1A1D2D"/></svg><svg class="status-icon" viewBox="0 0 25 12" fill="none"><rect x="0" y="0" width="22" height="12" rx="2" stroke="#1A1D2D" stroke-width="1"/><rect x="2" y="2" width="18" height="8" rx="1" fill="#1A1D2D"/><rect x="23" y="3.5" width="2" height="5" rx="1" fill="#1A1D2D"/></svg></div></div>
+      <div class="screen-header"><button class="back-btn" data-back="home"><svg viewBox="0 0 24 24" fill="none"><path d="M16 4L7 12L16 20" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h1 class="screen-title">数据中心 (BI)</h1></div>
+      <div class="screen-content">
+        <div class="bi-stat-grid"><div class="bi-stat-card"><span class="bi-stat-label">趋势总指数</span><span class="bi-stat-value gold">92.6</span><span class="bi-stat-sub">↑ +3.2</span></div><div class="bi-stat-card"><span class="bi-stat-label">品牌热度均值</span><span class="bi-stat-value">88.4</span><span class="bi-stat-sub">↑ +5.2</span></div><div class="bi-stat-card"><span class="bi-stat-label">会员增长</span><span class="bi-stat-value green">+248</span><span class="bi-stat-sub">本月累计</span></div><div class="bi-stat-card"><span class="bi-stat-label">采购金额</span><span class="bi-stat-value">¥8.6万</span><span class="bi-stat-sub">↑ +12%</span></div></div>
+        <div class="bi-tabs"><button class="bi-tab active" data-type="trend">趋势曲线</button><button class="bi-tab" data-type="brand">品牌热度</button><button class="bi-tab" data-type="shop">档口热力</button><button class="bi-tab" data-type="growth">风格增长</button><button class="bi-tab" data-type="member">会员趋势</button><button class="bi-tab" data-type="purchase">采购趋势</button></div>
+        <div class="bi-chart-card"><div class="chart-header-row"><span class="chart-title" id="bi-chart-title">趋势热度变化</span><span class="chart-unit">近30天</span></div><div class="bi-chart-area" id="bi-chart-area"><svg viewBox="0 0 326 160" class="chart-svg"><line x1="0" y1="80" x2="326" y2="80" stroke="#E5E7EB" stroke-width="0.5"/><path d="M0 80 C20 70 40 50 60 45S100 30 140 25S200 20 240 15S300 10 326 10" stroke="#A78BFA" stroke-width="2.5" fill="none"/><path d="M0 120 C20 110 40 100 60 95S100 80 140 75S200 65 240 55S300 50 326 45" stroke="#10B981" stroke-width="2.5" fill="none"/></svg></div></div>
+        <div class="card chart-card"><div class="chart-header-row"><span class="chart-title">数据总览</span><span class="chart-unit">2026年7月</span></div><div class="chart-area"><svg viewBox="0 0 326 120" preserveAspectRatio="none" class="chart-svg"><rect x="10" y="30" width="40" height="70" rx="4" fill="#A78BFA" opacity="0.6"/><rect x="60" y="20" width="40" height="80" rx="4" fill="#A78BFA" opacity="0.7"/><rect x="110" y="10" width="40" height="90" rx="4" fill="#A78BFA" opacity="0.8"/><rect x="160" y="5" width="40" height="95" rx="4" fill="#10B981" opacity="0.6"/><rect x="210" y="15" width="40" height="85" rx="4" fill="#10B981" opacity="0.7"/><rect x="260" y="25" width="40" height="75" rx="4" fill="#10B981" opacity="0.8"/></svg></div></div>
+      </div>
+      <div class="tab-bar"><div class="tab-pill"><button class="tab" data-screen="home"><svg viewBox="0 0 18 18" fill="none"><path d="M3 7.5L9 2L15 7.5V16H11V11H7V16H3V7.5Z" stroke="currentColor" stroke-width="1.5"/></svg><span>首页</span></button><button class="tab" data-screen="trend"><svg viewBox="0 0 18 18" fill="none"><path d="M2 16L5 10L8 13L11 6L16 2" stroke="currentColor" stroke-width="1.5"/></svg><span>趋势</span></button><button class="tab" data-screen="brand"><svg viewBox="0 0 18 18" fill="none"><path d="M9 1L16 5V13L9 17L2 13V5L9 1Z" stroke="currentColor" stroke-width="1.5"/></svg><span>品牌</span></button><button class="tab" data-screen="shop"><svg viewBox="0 0 18 18" fill="none"><path d="M3 3H15V15H3V3Z" stroke="currentColor" stroke-width="1.5"/><path d="M3 7H15" stroke="currentColor" stroke-width="1.5"/></svg><span>档口</span></button><button class="tab" data-screen="me"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="5" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M3 17C3 14 5.5 12 9 12S15 14 15 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>我</span></button></div></div>
+    </div>
+
+    <!-- ===== S9: Weather Forecast ===== -->
+    <div class="screen" id="screen-weather">
+      <div class="status-bar"><span class="status-time"></span><div class="status-icons"><svg class="status-icon" viewBox="0 0 17 12" fill="none"><rect x="0" y="8" width="3" height="4" rx="0.5" fill="#1A1D2D"/><rect x="4" y="5" width="3" height="7" rx="0.5" fill="#1A1D2D"/><rect x="8" y="2" width="3" height="10" rx="0.5" fill="#1A1D2D"/><rect x="12" y="0" width="3" height="12" rx="0.5" fill="#1A1D2D"/></svg><svg class="status-icon" viewBox="0 0 16 12" fill="none"><path d="M0.5 3.5C3 1.5 5.5 0.5 8 0.5s5 1 7.5 3" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round"/><path d="M2.5 6C4 4.5 6 3.5 8 3.5s4 1 5.5 2.5" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round"/><path d="M5 8.5C6 7.5 7 7 8 7s2 0.5 3 1.5" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="10" r="1" fill="#1A1D2D"/></svg><svg class="status-icon" viewBox="0 0 25 12" fill="none"><rect x="0" y="0" width="22" height="12" rx="2" stroke="#1A1D2D" stroke-width="1"/><rect x="2" y="2" width="18" height="8" rx="1" fill="#1A1D2D"/><rect x="23" y="3.5" width="2" height="5" rx="1" fill="#1A1D2D"/></svg></div></div>
+      <div class="screen-header"><button class="back-btn" data-back="home"><svg viewBox="0 0 24 24" fill="none"><path d="M16 4L7 12L16 20" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h1 class="screen-title">天气预报</h1></div>
+      <div class="screen-content">
+        <div class="card city-card"><div class="city-row"><span class="city-label">当前城市</span><svg class="chevron-down" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="#6B7288" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="city-name">深圳 · 南油</span></div>
+        <div class="card weather-now-card"><div class="weather-now-row"><div class="weather-now-info"><span class="weather-temp" id="w-temp">加载中…</span><span class="weather-desc" id="w-desc">--</span></div><svg class="weather-now-icon" id="w-icon" viewBox="0 0 60 60" fill="none"></svg></div><div class="weather-details"><div class="weather-detail"><span>湿度</span><b id="w-humidity">--</b></div><div class="weather-detail"><span>风速</span><b id="w-wind">--</b></div><div class="weather-detail"><span>紫外线</span><b id="w-uv">--</b></div></div></div>
+        <div class="card fashion-insight-card"><div class="fashion-insight-header"><svg viewBox="0 0 18 18" fill="none"><path d="M9 1L10.5 6.5L16 7L11 10.5L12 16L9 12.5L6 16L7 10.5L2 7L7.5 6.5L9 1Z" fill="#A78BFA"/></svg><span>穿搭趋势洞察</span></div><p id="w-insight">加载中…</p></div>
+        <div class="card chart-card"><div class="chart-header-row"><span class="chart-title">7天气温走势</span><span class="chart-unit">单位: °C</span></div><div class="chart-area" id="w-chart-area"></div><div class="chart-legend"><div class="legend-item"><span class="legend-dot" style="background:#A78BFA"></span><span>最高温</span></div><div class="legend-item"><span class="legend-dot" style="background:#10B981"></span><span>最低温</span></div></div></div>
+        <section class="section"><h2 class="section-title">7天预报</h2><div class="forecast-list" id="w-forecast-list"><div class="forecast-item"><span>加载天气数据…</span></div></div></section>
+      </div>
+      <div class="tab-bar"><div class="tab-pill"><button class="tab" data-screen="home"><svg viewBox="0 0 18 18" fill="none"><path d="M3 7.5L9 2L15 7.5V16H11V11H7V16H3V7.5Z" stroke="currentColor" stroke-width="1.5"/></svg><span>首页</span></button><button class="tab" data-screen="trend"><svg viewBox="0 0 18 18" fill="none"><path d="M2 16L5 10L8 13L11 6L16 2" stroke="currentColor" stroke-width="1.5"/></svg><span>趋势</span></button><button class="tab" data-screen="brand"><svg viewBox="0 0 18 18" fill="none"><path d="M9 1L16 5V13L9 17L2 13V5L9 1Z" stroke="currentColor" stroke-width="1.5"/></svg><span>品牌</span></button><button class="tab" data-screen="shop"><svg viewBox="0 0 18 18" fill="none"><path d="M3 3H15V15H3V3Z" stroke="currentColor" stroke-width="1.5"/><path d="M3 7H15" stroke="currentColor" stroke-width="1.5"/></svg><span>档口</span></button><button class="tab" data-screen="me"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="5" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M3 17C3 14 5.5 12 9 12S15 14 15 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>我</span></button></div></div>
+    </div>
+
+    <!-- ===== S10: 买手招募 ===== -->
+    <div class="screen" id="screen-recruit">
+      <div class="status-bar"><span class="status-time"></span></div>
+      <div class="screen-header"><button class="back-btn" data-back="home"><svg viewBox="0 0 24 24" fill="none"><path d="M16 4L7 12L16 20" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h1 class="screen-title">买手招募</h1></div>
+      <div class="screen-content">
+        <div class="card" style="text-align:center;padding:32px 20px;background:linear-gradient(135deg,#2D3142 0%,#3A3E52 100%);border:1px solid rgba(167,139,250,0.15);">
+          <svg viewBox="0 0 48 48" fill="none" style="width:48px;height:48px;margin:0 auto 16px;"><path d="M24 6l3 10 10 1-7.5 6.5 2.5 10L24 28l-8 5.5 2.5-10L11 17l10-1L24 6z" fill="#A78BFA" opacity="0.9"/><path d="M24 32v10M18 42h12" stroke="#A78BFA" stroke-width="2" stroke-linecap="round"/></svg>
+          <h2 style="font-size:22px;font-weight:700;color:#A78BFA;margin-bottom:8px;">有家的地方就有工作</h2>
+          <p style="font-size:13px;color:#6B7288;line-height:1.6;">加入NY INDEX买手网络，灵活办公、轻松收益</p>
+        </div>
+        <section class="section"><h2 class="section-title">提高转化率</h2>
+          <div class="rank-list">
+            <div class="rank-item" data-type="recruit" data-recruit="推荐官" style="cursor:pointer"><div class="rank-left"><span class="rank-badge gold">01</span><div class="rank-info"><span class="rank-name">招募推荐官</span><span class="rank-tag">推荐好友开店 · 赚取佣金</span></div></div><svg viewBox="0 0 16 16" fill="none" style="width:16px;height:16px;"><path d="M6 4L10 8L6 12" stroke="#6B7288" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            <div class="rank-item" data-type="recruit" data-recruit="城市合伙人" style="cursor:pointer"><div class="rank-left"><span class="rank-badge">02</span><div class="rank-info"><span class="rank-name">城市合伙人</span><span class="rank-tag">区域独家代理 · 分润体系</span></div></div><svg viewBox="0 0 16 16" fill="none" style="width:16px;height:16px;"><path d="M6 4L10 8L6 12" stroke="#6B7288" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            <div class="rank-item" data-type="recruit" data-recruit="收益排行" style="cursor:pointer"><div class="rank-left"><span class="rank-badge">03</span><div class="rank-info"><span class="rank-name">收益排行</span><span class="rank-tag">TOP买手月入过万</span></div></div><svg viewBox="0 0 16 16" fill="none" style="width:16px;height:16px;"><path d="M6 4L10 8L6 12" stroke="#6B7288" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          </div>
+        </section>
+        <div class="card" style="cursor:pointer" id="my-commission-card">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div><span style="font-size:13px;color:#6B7288;">我的佣金</span><div style="font-size:28px;font-weight:700;color:#10B981;margin-top:4px;">¥ 0.00</div></div>
+            <div style="text-align:right;"><span style="font-size:12px;color:#6B7288;">本月收益</span><div style="font-size:14px;color:#A78BFA;margin-top:4px;">查看明细 →</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== S11: 一键找款 ===== -->
+    <div class="screen" id="screen-findstyle">
+      <div class="status-bar"><span class="status-time"></span></div>
+      <div class="screen-header"><button class="back-btn" data-back="home"><svg viewBox="0 0 24 24" fill="none"><path d="M16 4L7 12L16 20" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h1 class="screen-title">一键找款</h1></div>
+      <div class="screen-content">
+        <div class="card" style="text-align:center;padding:28px 20px;border:2px dashed rgba(167,139,250,0.3);border-radius:12px;" id="upload-zone">
+          <svg viewBox="0 0 48 48" fill="none" style="width:48px;height:48px;margin:0 auto 12px;"><rect x="8" y="8" width="32" height="32" rx="4" stroke="#A78BFA" stroke-width="2"/><circle cx="18" cy="18" r="3" fill="#A78BFA"/><path d="M8 32l8-8 6 6 8-8 10 10" stroke="#A78BFA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <p style="font-size:16px;color:#1A1D2D;font-weight:600;margin-bottom:6px;">上传图片找同款</p>
+          <p style="font-size:12px;color:#6B7288;margin-bottom:16px;">支持 JPG/PNG · AI智能识别风格·面料·颜色</p>
+          <button class="btn-primary" id="upload-btn" style="background:#A78BFA;color:#FFFFFF;border:none;padding:10px 28px;border-radius:20px;font-size:14px;font-weight:600;cursor:pointer;">选择图片</button>
+          <input type="file" accept="image/*" id="upload-input" style="display:none;">
+        </div>
+        <div id="ai-result-area" style="display:none;">
+          <div class="card" style="margin-top:12px;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+              <svg viewBox="0 0 18 18" fill="none" style="width:18px;height:18px;flex-shrink:0;"><path d="M9 1L10.5 6.5L16 7L11 10.5L12 16L9 12.5L6 16L7 10.5L2 7L7.5 6.5L9 1Z" fill="#A78BFA"/></svg>
+              <span style="font-size:15px;font-weight:600;color:#A78BFA;">AI识别结果</span>
+            </div>
+            <div id="ai-tags" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;"></div>
+          </div>
+          <section class="section"><h2 class="section-title">南油相似款档口推荐</h2>
+            <div class="vendor-list" id="ai-match-list"></div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== S12: 半山邀 ===== -->
+    <div class="screen" id="screen-banshan">
+      <div class="status-bar"><span class="status-time"></span></div>
+      <div class="screen-header"><button class="back-btn" data-back="home"><svg viewBox="0 0 24 24" fill="none"><path d="M16 4L7 12L16 20" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h1 class="screen-title">半山邀</h1></div>
+      <div class="screen-content">
+        <div class="card" style="text-align:center;padding:28px 20px;background:linear-gradient(135deg,#2D3142 0%,#3A3E52 100%);border:1px solid rgba(249,115,22,0.15);">
+          <svg viewBox="0 0 48 48" fill="none" style="width:40px;height:40px;margin:0 auto 12px;"><path d="M4 38L16 16L28 26L44 6" stroke="#F97316" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="44" cy="6" r="3" fill="#F97316"/><path d="M2 42h44" stroke="#F97316" stroke-width="2" stroke-linecap="round"/></svg>
+          <h2 style="font-size:20px;font-weight:700;color:#F97316;margin-bottom:6px;">半山邀 · 南油企业家私享会</h2>
+          <p style="font-size:12px;color:#6B7288;line-height:1.6;">每月一次 · 邀请半山之上的企业经营者<br>共同交流趋势、商业和未来机会</p>
+        </div>
+        <section class="section"><h2 class="section-title">嘉宾机制</h2>
+          <div class="rank-list">
+            <div class="rank-item" data-type="banshan" data-bs="主理人" style="cursor:pointer"><div class="rank-left"><span class="rank-badge gold">①</span><div class="rank-info"><span class="rank-name">半山主理人</span><span class="rank-tag">负责分享 · 年销3000万+ / 单店10家+</span></div></div></div>
+            <div class="rank-item" data-type="banshan" data-bs="观察员" style="cursor:pointer"><div class="rank-left"><span class="rank-badge">②</span><div class="rank-info"><span class="rank-name">半山观察员</span><span class="rank-tag">优秀实体店老板 · 提供市场反馈</span></div></div></div>
+            <div class="rank-item" data-type="banshan" data-bs="同行者" style="cursor:pointer"><div class="rank-left"><span class="rank-badge">③</span><div class="rank-info"><span class="rank-name">半山同行者</span><span class="rank-tag">普通会员 · 申请加入</span></div></div></div>
+          </div>
+        </section>
+        <div class="card" style="cursor:pointer" id="bs-apply-card">
+          <div style="text-align:center;padding:8px 0;">
+            <p style="font-size:14px;color:#A78BFA;font-weight:600;">申请加入半山邀 →</p>
+            <p style="font-size:11px;color:#6B7288;margin-top:4px;">提交申请，审核通过后即可参与私享会</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== S13: 今日任务 ===== -->
+    <div class="screen" id="screen-tasks">
+      <div class="status-bar"><span class="status-time"></span></div>
+      <div class="screen-header"><button class="back-btn" data-back="home"><svg viewBox="0 0 24 24" fill="none"><path d="M16 4L7 12L16 20" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h1 class="screen-title">今日任务</h1></div>
+      <div class="screen-content">
+        <div class="card" style="margin-bottom:12px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-size:13px;color:#6B7288;">今日完成度</span>
+            <span style="font-size:14px;font-weight:600;color:#10B981;" id="task-progress">0 / 5</span>
+          </div>
+          <div style="height:6px;background:#E5E7EB;border-radius:3px;margin-top:8px;overflow:hidden;"><div id="task-bar" style="height:100%;width:0%;background:#10B981;border-radius:3px;transition:width 0.3s;"></div></div>
+        </div>
+        <section class="section"><h2 class="section-title">每日运营清单</h2>
+          <div class="rank-list" id="task-list">
+            <div class="rank-item task-item" data-task="0" style="cursor:pointer"><div class="rank-left"><span class="task-check" style="width:22px;height:22px;border-radius:50%;border:2px solid #D1D5DB;display:flex;align-items:center;justify-content:center;flex-shrink:0;"></span><div class="rank-info"><span class="rank-name">查看今日趋势报告</span><span class="rank-tag">了解行业最新动向</span></div></div></div>
+            <div class="rank-item task-item" data-task="1" style="cursor:pointer"><div class="rank-left"><span class="task-check" style="width:22px;height:22px;border-radius:50%;border:2px solid #D1D5DB;display:flex;align-items:center;justify-content:center;flex-shrink:0;"></span><div class="rank-info"><span class="rank-name">浏览3个推荐档口</span><span class="rank-tag">发现优质货源</span></div></div></div>
+            <div class="rank-item task-item" data-task="2" style="cursor:pointer"><div class="rank-left"><span class="task-check" style="width:22px;height:22px;border-radius:50%;border:2px solid #D1D5DB;display:flex;align-items:center;justify-content:center;flex-shrink:0;"></span><div class="rank-info"><span class="rank-name">上传1款找款图片</span><span class="rank-tag">AI智能匹配同款</span></div></div></div>
+            <div class="rank-item task-item" data-task="3" style="cursor:pointer"><div class="rank-left"><span class="task-check" style="width:22px;height:22px;border-radius:50%;border:2px solid #D1D5DB;display:flex;align-items:center;justify-content:center;flex-shrink:0;"></span><div class="rank-info"><span class="rank-name">生成1条获客内容</span><span class="rank-tag">AI获客助手</span></div></div></div>
+            <div class="rank-item task-item" data-task="4" style="cursor:pointer"><div class="rank-left"><span class="task-check" style="width:22px;height:22px;border-radius:50%;border:2px solid #D1D5DB;display:flex;align-items:center;justify-content:center;flex-shrink:0;"></span><div class="rank-info"><span class="rank-name">查看天气预报</span><span class="rank-tag">掌握穿搭趋势天气</span></div></div></div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- ===== AI换装 ===== -->
+    <div class="screen" id="screen-aicloth">
+      <div class="status-bar"><span class="status-time"></span></div>
+      <div class="screen-header"><button class="back-btn" data-back="content"><svg viewBox="0 0 24 24" fill="none"><path d="M16 4L7 12L16 20" stroke="#1A1D2D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h1 class="screen-title">AI 换装</h1></div>
+      <div class="screen-content aicloth-content">
+        <!-- 提示词输入 -->
+        <div class="card aicloth-prompt-card">
+          <div class="aicloth-prompt-header">
+            <svg viewBox="0 0 18 18" fill="none" style="width:16px;height:16px"><path d="M9 1L10.5 6.5L16 7L11 10.5L12 16L9 12.5L6 16L7 10.5L2 7L7.5 6.5L9 1Z" fill="#A78BFA"/></svg>
+            <span style="font-size:14px;font-weight:600;color:#A78BFA">描述你的需求</span>
+          </div>
+          <textarea id="aicloth-prompt" class="aicloth-prompt-input" placeholder="例如：参考模特框里的模特换上穿搭框的衣服，保持模特动作姿势不变…" rows="2"></textarea>
+        </div>
+
+        <!-- 模特图上传区 -->
+        <div class="aicloth-upload-section">
+          <div class="aicloth-upload-label">
+            <svg viewBox="0 0 16 16" fill="none" style="width:14px;height:14px"><circle cx="8" cy="5" r="3" stroke="#A78BFA" stroke-width="1.5"/><path d="M3 14c0-2.5 2.5-4 5-4s5 1.5 5 4" stroke="#A78BFA" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>模特图 <small style="color:#F97316">必填 · 1-3张</small></span>
+          </div>
+          <div class="aicloth-upload-grid" id="aicloth-model-grid">
+            <div class="aicloth-upload-slot" data-slot="model-0">
+              <div class="aicloth-slot-inner">
+                <svg viewBox="0 0 24 24" fill="none" class="aicloth-add-icon"><circle cx="8" cy="5" r="3" stroke="#A78BFA" stroke-width="1.5"/><path d="M3 14c0-2.5 2.5-4 5-4s5 1.5 5 4" stroke="#A78BFA" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="#A78BFA" stroke-width="1.5" stroke-linecap="round"/></svg>
+                <span class="aicloth-slot-label">添加模特</span>
+              </div>
+              <input type="file" accept="image/*" class="aicloth-file-input" data-target="model-0">
+            </div>
+            <div class="aicloth-upload-slot aicloth-slot-placeholder" data-slot="model-1">
+              <div class="aicloth-slot-inner aicloth-slot-dim">
+                <svg viewBox="0 0 24 24" fill="none" class="aicloth-add-icon aicloth-add-dim"><path d="M12 8v8M8 12h8" stroke="#6B7288" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </div>
+              <input type="file" accept="image/*" class="aicloth-file-input" data-target="model-1">
+            </div>
+            <div class="aicloth-upload-slot aicloth-slot-placeholder" data-slot="model-2">
+              <div class="aicloth-slot-inner aicloth-slot-dim">
+                <svg viewBox="0 0 24 24" fill="none" class="aicloth-add-icon aicloth-add-dim"><path d="M12 8v8M8 12h8" stroke="#6B7288" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </div>
+              <input type="file" accept="image/*" class="aicloth-file-input" data-target="model-2">
+            </div>
+          </div>
+        </div>
+
+        <!-- 穿搭图上传区 -->
+        <div class="aicloth-upload-section">
+          <div class="aicloth-upload-label">
+            <svg viewBox="0 0 16 16" fill="none" style="width:14px;height:14px"><rect x="2" y="2" width="12" height="12" rx="1" stroke="#10B981" stroke-width="1.5"/><path d="M5 6h6M5 9h4" stroke="#10B981" stroke-width="1"/></svg>
+            <span>穿搭图 <small style="color:#F97316">必填 · 1-3张</small></span>
+          </div>
+          <div class="aicloth-upload-grid" id="aicloth-outfit-grid">
+            <div class="aicloth-upload-slot" data-slot="outfit-0">
+              <div class="aicloth-slot-inner aicloth-slot-outfit">
+                <svg viewBox="0 0 24 24" fill="none" class="aicloth-add-icon"><rect x="4" y="4" width="16" height="16" rx="2" stroke="#10B981" stroke-width="1.5"/><path d="M9 8v8M7 12h4" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/></svg>
+                <span class="aicloth-slot-label" style="color:#10B981">添加穿搭</span>
+              </div>
+              <input type="file" accept="image/*" class="aicloth-file-input" data-target="outfit-0">
+            </div>
+            <div class="aicloth-upload-slot aicloth-slot-placeholder" data-slot="outfit-1">
+              <div class="aicloth-slot-inner aicloth-slot-dim">
+                <svg viewBox="0 0 24 24" fill="none" class="aicloth-add-icon aicloth-add-dim"><path d="M12 8v8M8 12h8" stroke="#6B7288" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </div>
+              <input type="file" accept="image/*" class="aicloth-file-input" data-target="outfit-1">
+            </div>
+            <div class="aicloth-upload-slot aicloth-slot-placeholder" data-slot="outfit-2">
+              <div class="aicloth-slot-inner aicloth-slot-dim">
+                <svg viewBox="0 0 24 24" fill="none" class="aicloth-add-icon aicloth-add-dim"><path d="M12 8v8M8 12h8" stroke="#6B7288" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </div>
+              <input type="file" accept="image/*" class="aicloth-file-input" data-target="outfit-2">
+            </div>
+          </div>
+        </div>
+
+        <!-- 约束条件 -->
+        <div class="card aicloth-rules-card" id="aicloth-rules-toggle">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div style="display:flex;align-items:center;gap:8px">
+              <svg viewBox="0 0 16 16" fill="none" style="width:14px;height:14px"><rect x="2" y="2" width="12" height="12" rx="2" stroke="#F97316" stroke-width="1.5"/><path d="M5 5h6M5 8h6M5 11h4" stroke="#F97316" stroke-width="1"/></svg>
+              <span style="font-size:14px;font-weight:600;color:#F97316">生成约束条件</span>
+            </div>
+            <svg viewBox="0 0 16 16" fill="none" id="aicloth-rules-chevron" style="width:16px;height:16px;transition:transform 0.3s"><path d="M4 6L8 10L12 6" stroke="#6B7288" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div id="aicloth-rules-body" style="display:none;margin-top:12px;font-size:12px;line-height:1.8;color:#6B7288">
+            <div style="padding:8px;background:#F0F2F6;border-radius:8px;border:1px solid rgba(167,139,250,0.1)">
+              <p><b style="color:#A78BFA">1. 主体：</b>完全沿用模特图人物，固定面部特征、身形、动作姿势、画面背景、光线角度，五官不变形、不换脸</p>
+              <p style="margin-top:6px"><b style="color:#10B981">2. 服装：</b>精准提取穿搭图全套衣服，完整复刻款式、面料肌理、色彩、褶皱、剪裁细节，完整上身匹配人体姿态</p>
+              <p style="margin-top:6px"><b style="color:#A78BFA">3. 渲染：</b>衣服贴合身体，合理自然褶皱，光影和原图环境融合，杜绝肢体扭曲、穿模、断裂、畸形手</p>
+              <p style="margin-top:6px"><b style="color:#F97316">4. 禁止改动：</b>模特长相、身高体态、拍摄背景、画面构图；禁止自动修改妆容</p>
+              <p style="margin-top:6px"><b style="color:#10B981">5. 输出画质：</b>高清写实，服装细节清晰，边缘过渡自然，无违和合成痕迹</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 生成按钮区域（默认隐藏，上传完必填图后显示） -->
+        <div id="aicloth-generate-area" style="display:none">
+          <button id="aicloth-generate-btn" class="aicloth-generate-btn">
+            <svg viewBox="0 0 18 18" fill="none" style="width:18px;height:18px"><path d="M9 1L10.5 6.5L16 7L11 10.5L12 16L9 12.5L6 16L7 10.5L2 7L7.5 6.5L9 1Z" fill="#FFFFFF"/></svg>
+            <span>生成变装图</span>
+            <div class="aicloth-cost-badge">
+              <span style="font-size:10px;color:#6B7288">消耗</span>
+              <span style="font-size:12px;font-weight:700;color:#10B981">0积分</span>
+              <small style="font-size:9px;color:#6B7288;margin-left:4px">测试期免费</small>
+            </div>
+          </button>
+        </div>
+
+        <!-- 生成加载态 -->
+        <div id="aicloth-loading" style="display:none">
+          <div class="card" style="text-align:center;padding:32px;border:1px solid rgba(167,139,250,0.15)">
+            <div class="aicloth-loading-anim">
+              <div class="aicloth-loading-dot" style="animation-delay:0s"></div>
+              <div class="aicloth-loading-dot" style="animation-delay:0.15s"></div>
+              <div class="aicloth-loading-dot" style="animation-delay:0.3s"></div>
+            </div>
+            <p style="font-size:14px;font-weight:600;color:#A78BFA;margin-top:16px">AI 正在换装…</p>
+            <p style="font-size:12px;color:#6B7288;margin-top:6px">保持人物特征 · 精准替换服装 · 高清渲染</p>
+          </div>
+        </div>
+
+        <!-- 生成结果区域（3个预留位） -->
+        <div id="aicloth-results-area" style="display:none">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+            <svg viewBox="0 0 18 18" fill="none" style="width:16px;height:16px"><path d="M9 1L10.5 6.5L16 7L11 10.5L12 16L9 12.5L6 16L7 10.5L2 7L7.5 6.5L9 1Z" fill="#A78BFA"/></svg>
+            <span style="font-size:15px;font-weight:700;color:#A78BFA">生成结果</span>
+          </div>
+          <div class="aicloth-result-grid">
+            <div class="aicloth-result-slot" id="aicloth-result-0">
+              <div class="aicloth-result-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" style="width:24px;height:24px"><rect x="4" y="4" width="16" height="16" rx="2" stroke="#9BA3B5" stroke-width="1.5"/><circle cx="10" cy="10" r="2" fill="#9BA3B5"/><path d="M4 16l4-4 3 3 5-5 8 8" stroke="#9BA3B5" stroke-width="1.5"/></svg>
+                <span style="font-size:11px;color:#6B7288">等待生成</span>
+              </div>
+            </div>
+            <div class="aicloth-result-slot" id="aicloth-result-1">
+              <div class="aicloth-result-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" style="width:24px;height:24px"><rect x="4" y="4" width="16" height="16" rx="2" stroke="#9BA3B5" stroke-width="1.5"/><circle cx="10" cy="10" r="2" fill="#9BA3B5"/><path d="M4 16l4-4 3 3 5-5 8 8" stroke="#9BA3B5" stroke-width="1.5"/></svg>
+                <span style="font-size:11px;color:#6B7288">预留位置</span>
+              </div>
+            </div>
+            <div class="aicloth-result-slot" id="aicloth-result-2">
+              <div class="aicloth-result-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" style="width:24px;height:24px"><rect x="4" y="4" width="16" height="16" rx="2" stroke="#9BA3B5" stroke-width="1.5"/><circle cx="10" cy="10" r="2" fill="#9BA3B5"/><path d="M4 16l4-4 3 3 5-5 8 8" stroke="#9BA3B5" stroke-width="1.5"/></svg>
+                <span style="font-size:11px;color:#6B7288">预留位置</span>
+              </div>
+            </div>
+          </div>
+          <!-- 重新生成按钮 -->
+          <button id="aicloth-regen-btn" class="aicloth-regen-btn" style="display:none">
+            <svg viewBox="0 0 16 16" fill="none" style="width:16px;height:16px"><path d="M8 2a6 6 0 0 1 5.3 3M14 8a6 6 0 0 1-3 5.3M8 14a6 6 0 0 1-5.3-3M2 8a6 6 0 0 1 3-5.3" stroke="#A78BFA" stroke-width="1.5" stroke-linecap="round"/><path d="M12 5h2V3M4 11H2v2" stroke="#A78BFA" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>重新生成</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== "我" 个人中心 ===== -->
+    <div class="screen" id="screen-me">
+      <div class="status-bar"><span class="status-time"></span></div>
+      <div class="screen-header"><h1 class="screen-title" style="padding-left:0">我的</h1></div>
+      <div class="screen-content" style="padding:16px">
+        <!-- 头像+姓名 -->
+        <div id="me-header" class="card" style="display:flex;align-items:center;gap:16px;padding:24px;background:linear-gradient(135deg,#2D3142 0%,#3A3E52 100%);border:1px solid rgba(167,139,250,0.2);border-radius:16px;">
+          <div id="me-avatar" style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#A78BFA,#8B5CF6);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:#FFFFFF;cursor:pointer;position:relative;overflow:hidden;flex-shrink:0;">W<span style="position:absolute;bottom:0;right:0;width:20px;height:20px;border-radius:50%;background:#FFFFFF;border:2px solid #A78BFA;display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 16 16" fill="none" style="width:10px;height:10px"><path d="M8 3v10M3 8h10" stroke="#A78BFA" stroke-width="2" stroke-linecap="round"/></svg></span><input type="file" accept="image/*" id="me-avatar-file-input" style="display:none"></div>
+          <div style="flex:1">
+            <div id="me-name" style="font-size:18px;font-weight:700;color:#FFFFFF;">王总</div>
+            <div id="me-role" style="font-size:13px;color:#6B7288;margin-top:2px;">高端女装经营者</div>
+          </div>
+          <button id="me-edit-btn" style="width:32px;height:32px;border-radius:8px;background:#E5E7EB;border:1px solid #D1D5DB;display:flex;align-items:center;justify-content:center;cursor:pointer;">
+            <svg viewBox="0 0 18 18" fill="none"><path d="M12 2L16 6L6 16H2V12L12 2Z" stroke="#6B7288" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <!-- 基本信息 -->
+        <section class="section" style="margin-top:16px">
+          <h2 class="section-title">基本信息</h2>
+          <div class="card" id="me-info-card" style="display:flex;flex-direction:column;gap:12px;padding:16px">
+            <div class="me-info-row"><span class="me-info-label">店铺名称</span><span class="me-info-value" id="me-store">南油精品女装</span></div>
+            <div class="me-info-row"><span class="me-info-label">所在城市</span><span class="me-info-value" id="me-city">深圳</span></div>
+            <div class="me-info-row"><span class="me-info-label">经营风格</span><span class="me-info-value" id="me-style">老钱风 / 静奢风</span></div>
+            <div class="me-info-row"><span class="me-info-label">手机号</span><span class="me-info-value" id="me-phone">138****8888</span></div>
+            <div class="me-info-row"><span class="me-info-label">注册时间</span><span class="me-info-value" id="me-regdate">2026年7月</span></div>
+          </div>
+        </section>
+        <!-- 我的身份 -->
+        <section class="section" style="margin-top:16px">
+          <h2 class="section-title">我的身份</h2>
+          <div class="card" style="display:flex;flex-direction:column;gap:8px;padding:16px">
+            <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px;color:#6B7288">NY INDEX 会员</span><span style="font-size:12px;padding:3px 10px;border-radius:20px;background:rgba(167,139,250,0.12);color:#A78BFA">已认证</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px;color:#6B7288">半山邀等级</span><span id="me-banshan-level" style="font-size:12px;padding:3px 10px;border-radius:20px;background:rgba(16,185,129,0.12);color:#10B981">同行者</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px;color:#6B7288">买手等级</span><span id="me-buyer-level" style="font-size:12px;padding:3px 10px;border-radius:20px;background:rgba(167,139,250,0.12);color:#A78BFA">推荐官</span></div>
+          </div>
+        </section>
+        <!-- 档口中心入口 -->
+        <section class="section" style="margin-top:16px">
+          <div class="card" id="me-stall-center" style="display:flex;align-items:center;gap:12px;padding:16px;cursor:pointer;background:linear-gradient(135deg,#A78BFA 0%,#8B5CF6 100%);border:none;">
+            <div style="width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg viewBox="0 0 24 24" fill="none" style="width:22px;height:22px"><path d="M3 7L12 3L21 7V17L12 21L3 17V7Z" stroke="#fff" stroke-width="1.6"/><path d="M3 7L12 11L21 7M12 11V21" stroke="#fff" stroke-width="1.6"/></svg>
+            </div>
+            <div style="flex:1">
+              <div style="font-size:15px;font-weight:700;color:#fff">档口中心</div>
+              <div id="me-stall-center-sub" style="font-size:12px;color:rgba(255,255,255,0.85);margin-top:2px">我是档口主 · 上传我的产品图</div>
+            </div>
+            <svg viewBox="0 0 18 18" fill="none" style="width:18px;height:18px"><path d="M7 4L12 9L7 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </section>
+        <!-- 功能入口 -->
+        <section class="section" style="margin-top:16px">
+          <h2 class="section-title">功能入口</h2>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div class="card me-func-card" id="me-my-commission" style="padding:16px;text-align:center;cursor:pointer"><svg viewBox="0 0 24 24" fill="none" style="width:28px;height:28px;margin-bottom:6px"><circle cx="12" cy="12" r="9" stroke="#10B981" stroke-width="1.5"/><text x="12" y="16" font-size="10" fill="#10B981" text-anchor="middle">¥</text></svg><span style="font-size:13px;color:#1A1D2D">我的佣金</span></div>
+            <div class="card me-func-card" id="me-my-orders" style="padding:16px;text-align:center;cursor:pointer"><svg viewBox="0 0 24 24" fill="none" style="width:28px;height:28px;margin-bottom:6px"><rect x="4" y="3" width="16" height="18" rx="2" stroke="#A78BFA" stroke-width="1.5"/><path d="M8 8H16M8 12H16M8 16H12" stroke="#A78BFA" stroke-width="1.5"/></svg><span style="font-size:13px;color:#1A1D2D">我的订单</span></div>
+            <div class="card me-func-card" id="me-my-favorites" style="padding:16px;text-align:center;cursor:pointer"><svg viewBox="0 0 24 24" fill="none" style="width:28px;height:28px;margin-bottom:6px"><path d="M12 21L3.5 12.5C1 10 1 6 4 4s8 0 8 0 5-2 8 0 3 6 0.5 8.5L12 21z" stroke="#F97316" stroke-width="1.5"/></svg><span style="font-size:13px;color:#1A1D2D">我的收藏</span></div>
+            <div class="card me-func-card" id="me-settings" style="padding:16px;text-align:center;cursor:pointer"><svg viewBox="0 0 24 24" fill="none" style="width:28px;height:28px;margin-bottom:6px"><circle cx="12" cy="12" r="3" stroke="#6B7288" stroke-width="1.5"/><path d="M12 2V4M12 20V22M2 12H4M20 12H22M4.93 4.93L6.34 6.34M17.66 17.66L19.07 19.07M4.93 19.07L6.34 17.66M17.66 6.34L19.07 4.93" stroke="#6B7288" stroke-width="1.5"/></svg><span style="font-size:13px;color:#1A1D2D">设置</span></div>
+          </div>
+        </section>
+      </div>
+      <div class="tab-bar"><div class="tab-pill"><button class="tab" data-screen="home"><svg viewBox="0 0 18 18" fill="none"><path d="M3 7.5L9 2L15 7.5V16H11V11H7V16H3V7.5Z" stroke="currentColor" stroke-width="1.5"/></svg><span>首页</span></button><button class="tab" data-screen="trend"><svg viewBox="0 0 18 18" fill="none"><path d="M2 16L5 10L8 13L11 6L16 2" stroke="currentColor" stroke-width="1.5"/></svg><span>趋势</span></button><button class="tab" data-screen="brand"><svg viewBox="0 0 18 18" fill="none"><path d="M9 1L16 5V13L9 17L2 13V5L9 1Z" stroke="currentColor" stroke-width="1.5"/></svg><span>品牌</span></button><button class="tab" data-screen="shop"><svg viewBox="0 0 18 18" fill="none"><path d="M3 3H15V15H3V3Z" stroke="currentColor" stroke-width="1.5"/><path d="M3 7H15" stroke="currentColor" stroke-width="1.5"/></svg><span>档口</span></button><button class="tab active" data-screen="me"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="5" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M3 17C3 14 5.5 12 9 12S15 14 15 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>我</span></button></div></div>
+    </div>
+
+    <!-- ===== 登录关卡页面 ===== -->
+    <div class="screen" id="screen-login">
+      <div class="screen-content" style="display:flex;flex-direction:column;justify-content:center;padding:32px 24px;min-height:100dvh">
+        <!-- Logo -->
+        <div style="text-align:center;margin-bottom:40px">
+          <h1 style="font-size:28px;font-weight:700;color:#A78BFA;letter-spacing:2px">NY INDEX</h1>
+          <p style="font-size:14px;color:#6B7288;margin-top:6px">南油高端女装趋势指数</p>
+          <p style="font-size:12px;color:#10B981;margin-top:12px">行业决策操作系统 · 服装人必备</p>
+        </div>
+        <!-- 注册表单 -->
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div class="login-field">
+            <label style="font-size:12px;color:#6B7288;margin-bottom:4px;display:block">姓名 *</label>
+            <input type="text" id="login-name" placeholder="请输入您的姓名" style="width:100%;height:44px;background:#F0F2F6;border:1px solid #D1D5DB;border-radius:12px;padding:0 16px;color:#1A1D2D;font-size:14px;font-family:'Inter','PingFang SC';outline:none" />
+          </div>
+          <div class="login-field">
+            <label style="font-size:12px;color:#6B7288;margin-bottom:4px;display:block">手机号 *</label>
+            <input type="tel" id="login-phone" placeholder="请输入手机号" maxlength="11" style="width:100%;height:44px;background:#F0F2F6;border:1px solid #D1D5DB;border-radius:12px;padding:0 16px;color:#1A1D2D;font-size:14px;font-family:'Inter','PingFang SC';outline:none" />
+          </div>
+          <div class="login-field">
+            <label style="font-size:12px;color:#6B7288;margin-bottom:4px;display:block">店铺/公司名称</label>
+            <input type="text" id="login-store" placeholder="请输入店铺名称" style="width:100%;height:44px;background:#F0F2F6;border:1px solid #D1D5DB;border-radius:12px;padding:0 16px;color:#1A1D2D;font-size:14px;font-family:'Inter','PingFang SC';outline:none" />
+          </div>
+          <div class="login-field">
+            <label style="font-size:12px;color:#6B7288;margin-bottom:4px;display:block">所在城市 *</label>
+            <select id="login-city" style="width:100%;height:44px;background:#F0F2F6;border:1px solid #D1D5DB;border-radius:12px;padding:0 16px;color:#1A1D2D;font-size:14px;font-family:\'Inter\',\'PingFang SC\';outline:none;appearance:none">
+              <option value="">请选择城市</option>
+              <option value="深圳">深圳</option>
+              <option value="广州">广州</option>
+              <option value="杭州">杭州</option>
+              <option value="成都">成都</option>
+              <option value="北京">北京</option>
+              <option value="上海">上海</option>
+              <option value="武汉">武汉</option>
+              <option value="长沙">长沙</option>
+              <option value="重庆">重庆</option>
+              <option value="南京">南京</option>
+              <option value="其他">其他城市</option>
+            </select>
+          </div>
+          <div class="login-field">
+            <label style="font-size:12px;color:#6B7288;margin-bottom:4px;display:block">主营风格</label>
+            <div style="display:flex;gap:8px;flex-wrap:wrap" id="login-style-tags">
+              <button class="style-tag-btn" data-style="老钱风">老钱风</button>
+              <button class="style-tag-btn" data-style="静奢风">静奢风</button>
+              <button class="style-tag-btn" data-style="新中式">新中式</button>
+              <button class="style-tag-btn" data-style="法式">法式</button>
+              <button class="style-tag-btn" data-style="通勤">通勤</button>
+              <button class="style-tag-btn" data-style="复古">复古</button>
+              <button class="style-tag-btn" data-style="韩系">韩系</button>
+              <button class="style-tag-btn" data-style="国风">国风</button>
+            </div>
+          </div>
+          <!-- 错误提示 -->
+          <div id="login-error" style="font-size:12px;color:#F97316;text-align:center;min-height:16px"></div>
+          <!-- 注册按钮 -->
+          <button id="login-submit-btn" style="width:100%;height:48px;border-radius:12px;background:linear-gradient(135deg,#A78BFA,#8B5CF6);border:none;color:#FFFFFF;font-size:16px;font-weight:700;cursor:pointer;font-family:'Inter','PingFang SC';transition:transform 0.15s">进入 NY INDEX</button>
+          <p style="font-size:11px;color:#666;text-align:center;margin-top:12px;line-height:1.5">注册即同意《用户服务协议》和《隐私政策》</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Modal ===== -->
+    <div id="modal-overlay">
+      <div id="modal-content">
+        <button id="modal-close">✕</button>
+        <h2 id="modal-title"></h2>
+        <div id="modal-body"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

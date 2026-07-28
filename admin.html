@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>南油档口 · 管理员审核</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body { font-family: 'Inter', -apple-system, 'PingFang SC', sans-serif; background: #F5F7FA; color: #1A1D2D; min-height: 100dvh; }
+    .wrap { max-width: 480px; margin: 0 auto; padding: 24px 18px 60px; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .logo { font-size: 18px; font-weight: 800; color: #A78BFA; letter-spacing: 1px; }
+    .logout { font-size: 13px; color: #6B7288; cursor: pointer; padding: 6px 12px; border-radius: 10px; background: #fff; border: 1px solid rgba(26,29,45,0.08); }
+    h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+    .sub { font-size: 13px; color: #6B7288; margin-bottom: 20px; }
+    .card { background: #fff; border-radius: 16px; padding: 20px; box-shadow: 0 8px 24px rgba(26,29,45,0.06); }
+    .field { margin-bottom: 14px; }
+    .field label { display: block; font-size: 12px; color: #6B7288; margin-bottom: 6px; }
+    .field input { width: 100%; height: 44px; background: #F0F2F6; border: 1px solid #D1D5DB; border-radius: 12px; padding: 0 14px; font-size: 14px; color: #1A1D2D; outline: none; }
+    .btn { width: 100%; height: 46px; border: none; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; }
+    .btn-primary { background: linear-gradient(135deg, #A78BFA, #8B5CF6); color: #fff; }
+    .btn-primary:active { transform: scale(0.98); }
+    .pending-list { display: flex; flex-direction: column; gap: 14px; }
+    .p-item { background: #fff; border-radius: 16px; padding: 14px; box-shadow: 0 4px 16px rgba(26,29,45,0.05); }
+    .p-img { width: 100%; border-radius: 12px; object-fit: cover; max-height: 280px; background: #F0F2F6; }
+    .p-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
+    .p-stall { font-size: 14px; font-weight: 700; }
+    .p-time { font-size: 11px; color: #9BA3B5; }
+    .p-caption { font-size: 13px; color: #6B7288; margin-top: 4px; }
+    .p-actions { display: flex; gap: 10px; margin-top: 12px; }
+    .p-actions button { flex: 1; height: 40px; border: none; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; }
+    .approve { background: rgba(16,185,129,0.12); color: #10B981; }
+    .reject { background: rgba(239,68,68,0.12); color: #EF4444; }
+    .empty { text-align: center; padding: 60px 20px; color: #9BA3B5; font-size: 14px; }
+    .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; background: rgba(249,115,22,0.12); color: #F97316; }
+    .hidden { display: none !important; }
+    .toast { position: fixed; left: 50%; bottom: 40px; transform: translateX(-50%); background: #1A1D2D; color: #fff; padding: 10px 18px; border-radius: 12px; font-size: 13px; opacity: 0; transition: opacity 0.25s; pointer-events: none; }
+    .toast.show { opacity: 1; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="logo">NY INDEX · 审核台</div>
+      <div class="logout hidden" id="logout">退出</div>
+    </div>
+
+    <!-- 登录 -->
+    <div id="login-view">
+      <h1>管理员登录</h1>
+      <div class="sub">登录后可审核档口上传的产品图</div>
+      <div class="card">
+        <div class="field">
+          <label>账号</label>
+          <input id="username" placeholder="admin" autocomplete="username">
+        </div>
+        <div class="field">
+          <label>密码</label>
+          <input id="password" type="password" placeholder="请输入密码" autocomplete="current-password">
+        </div>
+        <button class="btn btn-primary" id="login-btn">登录</button>
+      </div>
+    </div>
+
+    <!-- 审核 -->
+    <div id="review-view" class="hidden">
+      <h1>待审核产品图 <span class="badge" id="count">0</span></h1>
+      <div class="sub">通过后将展示在对应档口详情页</div>
+      <div id="list" class="pending-list"></div>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const API = '';
+    const TKN = 'ny_admin_token';
+    const $ = (id) => document.getElementById(id);
+    function toast(msg) { const t = $('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 1800); }
+    function getToken() { return localStorage.getItem(TKN); }
+    async function api(path, opts = {}) {
+      const headers = Object.assign({}, opts.headers || {});
+      const tk = getToken();
+      if (tk) headers['Authorization'] = 'Bearer ' + tk;
+      if (opts.body && !(opts.body instanceof FormData)) headers['Content-Type'] = 'application/json';
+      const res = await fetch(API + path, { method: opts.method || 'GET', headers, body: opts.body });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || ('请求失败 ' + res.status));
+      return data;
+    }
+
+    async function doLogin() {
+      const username = $('username').value.trim();
+      const password = $('password').value;
+      if (!username || !password) return toast('请填写账号和密码');
+      try {
+        const r = await api('/api/admin/login', { method: 'POST', body: JSON.stringify({ username, password }) });
+        localStorage.setItem(TKN, r.token);
+        enterReview();
+      } catch (e) { toast(e.message); }
+    }
+
+    function enterReview() {
+      $('login-view').classList.add('hidden');
+      $('review-view').classList.remove('hidden');
+      $('logout').classList.remove('hidden');
+      loadPending();
+    }
+
+    async function loadPending() {
+      const list = $('list');
+      list.innerHTML = '<div class="empty">加载中...</div>';
+      try {
+        const items = await api('/api/admin/pending');
+        $('count').textContent = items.length;
+        if (!items.length) { list.innerHTML = '<div class="empty">🎉 暂无待审核产品图</div>'; return; }
+        list.innerHTML = items.map(p => `
+          <div class="p-item" data-id="${p.id}">
+            <img class="p-img" src="${API}${p.url}" alt="">
+            <div class="p-meta"><span class="p-stall">${p.stallName}</span><span class="p-time">${new Date(p.uploadedAt).toLocaleString('zh-CN')}</span></div>
+            ${p.caption ? `<div class="p-caption">${p.caption}</div>` : ''}
+            <div class="p-actions">
+              <button class="approve" data-act="approve">通过</button>
+              <button class="reject" data-act="reject">拒绝</button>
+            </div>
+          </div>`).join('');
+        list.querySelectorAll('.p-item').forEach(item => {
+          item.querySelectorAll('button[data-act]').forEach(btn => {
+            btn.addEventListener('click', () => review(item.dataset.id, btn.dataset.act));
+          });
+        });
+      } catch (e) { list.innerHTML = '<div class="empty">加载失败：' + e.message + '</div>'; }
+    }
+
+    async function review(id, decision) {
+      try {
+        await api('/api/admin/review', { method: 'POST', body: JSON.stringify({ id, decision }) });
+        toast(decision === 'approve' ? '已通过' : '已拒绝');
+        loadPending();
+      } catch (e) { toast(e.message); }
+    }
+
+    $('login-btn').addEventListener('click', doLogin);
+    $('password').addEventListener('keydown', (e) => { if (e.key === 'Enter') doLogin(); });
+    $('logout').addEventListener('click', () => {
+      localStorage.removeItem(TKN);
+      $('review-view').classList.add('hidden');
+      $('login-view').classList.remove('hidden');
+      $('logout').classList.add('hidden');
+    });
+
+    if (getToken()) enterReview();
+  </script>
+</body>
+</html>
