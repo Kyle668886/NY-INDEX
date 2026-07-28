@@ -5,6 +5,7 @@ node_modules/
 # 运行时数据：由 seed.json 初始化（含管理员账号、审核记录），不入库
 server/data/store.json
 # 上传的图片：运行时生成，不入库；保留空目录占位
+server/data/uploads/*
 server/uploads/*
 !server/uploads/.gitkeep
 .DS_Store
